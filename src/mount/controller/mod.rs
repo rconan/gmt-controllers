@@ -1,5 +1,6 @@
 use crate::Simulink;
 
+/// Simulink external input (U)
 #[repr(C)]
 #[allow(non_snake_case)]
 #[derive(Debug)]
@@ -7,6 +8,7 @@ struct ExtU_MountControl0_T {
     Mount_SP: [f64; 3],
     Mount_FB: [f64; 20],
 }
+/// Simulink external output (Y)
 #[repr(C)]
 #[allow(non_snake_case)]
 #[derive(Debug)]
@@ -23,6 +25,7 @@ extern "C" {
 }
 
 use std::ops::{Index, IndexMut};
+/// Controller inputs U
 #[derive(Debug)]
 pub enum U<'a> {
     SP(&'a mut [f64; 3]),
@@ -51,6 +54,7 @@ impl<'a> IndexMut<usize> for U<'a> {
         }
     }
 }
+/// Controller outputs Y
 #[derive(Debug)]
 pub enum Y<'a> {
     CMD(&'a [f64; 3]),
@@ -63,6 +67,8 @@ impl<'a> Index<usize> for Y<'a> {
         }
     }
 }
+
+/// Controller
 pub struct Controller<'a> {
     pub oss_az_drive: U<'a>,
     pub oss_el_drive: U<'a>,
@@ -70,6 +76,7 @@ pub struct Controller<'a> {
     pub cmd: Y<'a>,
 }
 impl<'a> Controller<'a> {
+    /// Creates a new controller
     pub fn new() -> Self {
         let mut this = unsafe {
             Self {
