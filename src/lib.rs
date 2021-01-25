@@ -1,3 +1,14 @@
+//! # GMT SIMULINK CONTROLLER BRIDGE
+//!
+//! This is an interface to build and to run a controller design with Simulink inside Rust
+//! ## Example
+//! A Simulink model named `SimControl` with 1 input `SimIn1` of size 6 and 1 output `SimOut1` of size 3 is imported into Rust with:
+//! ```rust
+//! build_inputs!(In1,6)
+//! build_inputs!(Out1,3)
+//! build_controller!(SimControl, U: (SimIn1 -> (In1,in1)), Y: (SimOut1 -> (Out1,out1)))
+//! ```
+
 pub mod m1;
 pub mod mount;
 
@@ -7,6 +18,12 @@ pub trait Simulink {
     fn terminate(&self);
 }
 
+/// Build the controller inputs
+///
+/// An input definition is: `(<enum name,size>,<...>,...)` or `(<enum name,size,offset>,<...>,...)` with
+///  - `enum name`: the name of the input enum variant (U::name)
+///  - `size`: the size of the corresponding Simulink input
+///  - `offset`: the pointer offset in the corresponding Simulink input
 #[macro_export]
 macro_rules! build_inputs {
     ($($name:ident, $size:expr),+) => {
@@ -54,6 +71,13 @@ macro_rules! build_inputs {
         }
     };
 }
+/// Build the controller outputs
+///
+///
+/// An output definition is: `(<enum name,size>,<...>,...)` or `(<enum name,size,offset>,<...>,...)` with
+///  - `enum name`: the name of the output enum variant (Y::name)
+///  - `size`: the size of the corresponding Simulink output
+///  - `offset`: the pointer offset in the corresponding Simulink output
 #[macro_export]
 macro_rules! build_outputs {
     ($($name:ident, $size:expr),+) => {
@@ -87,7 +111,9 @@ macro_rules! build_outputs {
         }
     }
 }
-
+/// Build the controller
+///
+/// A controller definition is: `(Simulink controller name, U : (<Simulink input name -> (enum type,variable name)>,<...>,...), Y : (<Simulink output name -> (enum type,variable name)>,<...>,...))`
 #[macro_export]
 macro_rules! build_controller {
     ($controller:ident, U : ($($sim_u:ident -> ($enum_u:ident,$var_u:ident)),+) , Y : ($($sim_y:ident -> ($enum_y:ident,$var_y:ident)),+)) => {
