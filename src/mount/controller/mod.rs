@@ -1,4 +1,4 @@
-use crate::Simulink;
+use crate::{build_controller, build_inputs, build_outputs, Simulink};
 
 /// Simulink external input (U)
 #[repr(C)]
@@ -25,6 +25,28 @@ extern "C" {
 }
 
 use std::ops::{Index, IndexMut};
+build_inputs!(
+    SP,
+    3,
+    0,
+    OssAzDrive,
+    20,
+    0,
+    OssElDrive,
+    20,
+    8,
+    OssGirDrive,
+    20,
+    16
+);
+build_outputs!(CMD, 3);
+build_controller!(MountControl0,
+                  U : (Mount_FB -> (OssAzDrive,oss_az_drive),
+                       Mount_FB -> (OssElDrive,oss_el_drive),
+                       Mount_FB -> (OssGirDrive,oss_gir_drive)),
+                  Y : (Mount_cmd -> (CMD,cmd))
+);
+/*
 /// Controller inputs U
 #[derive(Debug)]
 pub enum U<'a> {
@@ -119,3 +141,4 @@ impl<'a> Iterator for &Controller<'a> {
         Some(())
     }
 }
+*/
