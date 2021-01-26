@@ -18,6 +18,37 @@ pub trait Simulink {
     fn terminate(&self);
 }
 
+#[macro_export]
+macro_rules! import_simulink {
+    ($controller:ident, U : ($($sim_u:ident, $size_u:expr),+), Y : ($($sim_y:ident, $size_y:expr),+)) => {
+        paste::paste!{
+            /// Simulink external input (U)
+            #[repr(C)]
+            #[allow(non_snake_case)]
+            #[derive(Debug)]
+            struct [<ExtU_ $controller _T>] {
+            $($sim_u: [f64;$size_u],)+
+        }}
+        paste::paste!{
+            /// Simulink external output (Y)
+            #[repr(C)]
+            #[allow(non_snake_case)]
+            #[derive(Debug)]
+            struct [<ExtY_ $controller _T>] {
+            $($sim_y: [f64;$size_y],)+
+        }}
+
+        paste::paste!{
+        extern "C" {
+            fn [<$controller _initialize>]();
+            fn [<$controller _step>]();
+            fn [<$controller _terminate>]();
+            static mut [<$controller _U>]: [<ExtU_ $controller _T>];
+            static mut [<$controller _Y>]: [<ExtY_ $controller _T>];
+        }}
+    };
+}
+
 /// Build the controller inputs
 ///
 /// An input definition is: `(<enum name,size>,<...>,...)` or `(<enum name,size,offset>,<...>,...)` with
@@ -32,7 +63,7 @@ macro_rules! build_inputs {
         pub enum U<'a> {
             $($name(&'a mut [f64; $size])),+
         }
-        impl<'a> Index<usize> for U<'a> {
+        impl<'a> std::ops::Index<usize> for U<'a> {
             type Output = f64;
             fn index(&self, index: usize) -> &Self::Output {
                 match self {
@@ -40,7 +71,7 @@ macro_rules! build_inputs {
                 }
             }
         }
-        impl<'a> IndexMut<usize> for U<'a> {
+        impl<'a> std::ops::IndexMut<usize> for U<'a> {
             fn index_mut(&mut self, index: usize) -> &mut Self::Output {
                 match self {
                     $(U::$name(data) => &mut data[index]),+
@@ -54,7 +85,7 @@ macro_rules! build_inputs {
         pub enum U<'a> {
             $($name(&'a mut [f64; $size])),+
         }
-        impl<'a> Index<usize> for U<'a> {
+        impl<'a> std::ops::Index<usize> for U<'a> {
             type Output = f64;
             fn index(&self, index: usize) -> &Self::Output {
                 match self {
@@ -62,7 +93,7 @@ macro_rules! build_inputs {
                 }
             }
         }
-        impl<'a> IndexMut<usize> for U<'a> {
+        impl<'a> std::ops::IndexMut<usize> for U<'a> {
             fn index_mut(&mut self, index: usize) -> &mut Self::Output {
                 match self {
                     $(U::$name(data) => &mut data[index + $offset]),+
@@ -86,7 +117,7 @@ macro_rules! build_outputs {
         pub enum Y<'a> {
             $($name(&'a mut [f64; $size])),+
         }
-        impl<'a> Index<usize> for Y<'a> {
+        impl<'a> std::ops::Index<usize> for Y<'a> {
             type Output = f64;
             fn index(&self, index: usize) -> &Self::Output {
                 match self {
@@ -101,7 +132,7 @@ macro_rules! build_outputs {
         pub enum Y<'a> {
             $($name(&'a mut [f64; $size])),+
         }
-        impl<'a> Index<usize> for Y<'a> {
+        impl<'a> std::ops::Index<usize> for Y<'a> {
             type Output = f64;
             fn index(&self, index: usize) -> &Self::Output {
                 match self {
@@ -136,6 +167,7 @@ macro_rules! build_controller {
                 this
             }
         }}
+        use $crate::Simulink;
         paste::paste! {
         impl<'a> Simulink for Controller<'a> {
             fn initialize(&mut self) {
