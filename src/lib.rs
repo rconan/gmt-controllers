@@ -4,6 +4,7 @@
 //! ## Example
 //! A Simulink model named `SimControl` with 1 input `SimIn1` of size 6 and 1 output `SimOut1` of size 3 is imported into Rust with:
 //! ```rust
+//! import_simulink!(SimControl, U : (SimIn1,6), Y : (SimOut1,3))
 //! build_inputs!(In1,6)
 //! build_inputs!(Out1,3)
 //! build_controller!(SimControl, U: (SimIn1 -> (In1,in1)), Y: (SimOut1 -> (Out1,out1)))
@@ -18,6 +19,9 @@ pub trait Simulink {
     fn terminate(&self);
 }
 
+/// Import Simulink C definitions
+///
+/// An Simulink C import is written:  `(Simulink controller name, U : (<Simulink input name,size>,<...>,...), Y : (<Simulink output name,size>,<...>,...))`
 #[macro_export]
 macro_rules! import_simulink {
     ($controller:ident, U : ($($sim_u:ident, $size_u:expr),+), Y : ($($sim_y:ident, $size_y:expr),+)) => {
@@ -200,12 +204,4 @@ macro_rules! build_controller {
             }
         }
     };
-}
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
 }
