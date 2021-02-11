@@ -1,3 +1,4 @@
+
 //! # GMT SIMULINK CONTROLLER BRIDGE
 //!
 //! This is an interface to build and to run a controller design with Simulink inside Rust
@@ -203,5 +204,40 @@ macro_rules! build_controller {
                 Some(())
             }
         }
+        impl<'a> Iterator for Controller<'a> {
+            type Item = ();
+            fn next(&mut self) -> Option<Self::Item> {
+                self.step();
+                Some(())
+            }
+        }
     };
 }
+
+use dos::Pairing;
+impl<'a> Pairing<mount::drives::U<'a>,()> for mount::controller::Y<'a> {
+    fn pair(&mut self, drive: &mut mount::drives::U) -> Option<()> {
+        match (drive,self) {
+            (mount::drives::U::CMD(d),mount::controller::Y::CMD(c)) => {
+                d[0] = c[0];
+                d[1] = c[1];
+                d[2] = c[2];
+                Some(())
+            },
+            _ => None,
+        }
+    }
+}
+use fem::fem_io;
+impl<'a> Pairing<fem_io::Inputs,Vec<f64>> for mount::drives::Y<'a> {
+    fn pair(&mut self, fem: &mut fem_io::Inputs) -> Option<Vec<f64>> {
+        use mount::drives::Y::*;
+        match (fem,self) {
+            (fem_io::Inputs::OSSAzDriveF(_),OssAzDrive(v)) => Some(v.to_vec()),
+            (fem_io::Inputs::OSSElDriveF(_),OssElDrive(v)) => Some(v.to_vec()),
+            (fem_io::Inputs::OSSGIRDriveF(_),OssGirDrive(v)) => Some(v.to_vec()),
+            _ => None
+        }
+    }
+}
+
