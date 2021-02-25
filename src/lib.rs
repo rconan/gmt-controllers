@@ -130,6 +130,13 @@ macro_rules! build_outputs {
                 }
             }
         }
+        impl<'a> From<&Y<'a>> for Vec<f64> {
+            fn from(y: &Y<'a>) -> Vec<f64> {
+                match y {
+                    $(Y::$name(data) => data.to_vec()),+
+                }
+            }
+        }
     };
     ($($name:ident, $size:expr,$offset:expr),+) => {
         /// Controller outputs Y
@@ -142,6 +149,13 @@ macro_rules! build_outputs {
             fn index(&self, index: usize) -> &Self::Output {
                 match self {
                     $(Y::$name(data) => &data[index + $offset]),+
+                }
+            }
+        }
+        impl<'a> From<&Y<'a>> for Vec<f64> {
+            fn from(y: &Y<'a>) -> Vec<f64> {
+                match y {
+                    $(Y::$name(data) => data[$offset..].to_vec()),+
                 }
             }
         }
@@ -212,32 +226,5 @@ macro_rules! build_controller {
             }
         }
     };
-}
-
-use dos::Pairing;
-impl<'a> Pairing<mount::drives::U<'a>,()> for mount::controller::Y<'a> {
-    fn pair(&mut self, drive: &mut mount::drives::U) -> Option<()> {
-        match (drive,self) {
-            (mount::drives::U::CMD(d),mount::controller::Y::CMD(c)) => {
-                d[0] = c[0];
-                d[1] = c[1];
-                d[2] = c[2];
-                Some(())
-            },
-            _ => None,
-        }
-    }
-}
-use fem::fem_io;
-impl<'a> Pairing<fem_io::Inputs,Vec<f64>> for mount::drives::Y<'a> {
-    fn pair(&mut self, fem: &mut fem_io::Inputs) -> Option<Vec<f64>> {
-        use mount::drives::Y::*;
-        match (fem,self) {
-            (fem_io::Inputs::OSSAzDriveF(_),OssAzDrive(v)) => Some(v.to_vec()),
-            (fem_io::Inputs::OSSElDriveF(_),OssElDrive(v)) => Some(v.to_vec()),
-            (fem_io::Inputs::OSSGIRDriveF(_),OssGirDrive(v)) => Some(v.to_vec()),
-            _ => None
-        }
-    }
 }
 
