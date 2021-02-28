@@ -15,7 +15,7 @@ build_inputs!(
     20,
     16
 );
-build_outputs!(OssAzDrive, 20, 0, OssElDrive, 20, 8, OssGirDrive, 20, 16);
+build_outputs!(OssAzDrive, 20, 8, 0, OssElDrive, 20, 8, 8, OssGirDrive, 20, 4, 16);
 build_controller!(MountDrives,
                   U : (Mount_cmd -> (CMD,cmd) ,
                        Mount_pos -> (OssAzDrive,oss_az_drive_d),

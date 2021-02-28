@@ -138,7 +138,7 @@ macro_rules! build_outputs {
             }
         }
     };
-    ($($name:ident, $size:expr,$offset:expr),+) => {
+    ($($name:ident, $size:expr,$subsize:expr,$offset:expr),+) => {
         /// Controller outputs Y
         #[derive(Debug)]
         pub enum Y<'a> {
@@ -155,7 +155,7 @@ macro_rules! build_outputs {
         impl<'a> From<&Y<'a>> for Vec<f64> {
             fn from(y: &Y<'a>) -> Vec<f64> {
                 match y {
-                    $(Y::$name(data) => data[$offset..].to_vec()),+
+                    $(Y::$name(data) => data[$offset..$offset+$subsize].to_vec()),+
                 }
             }
         }
