@@ -1,0 +1,26 @@
+[workspace]
+members = [
+    "m1-ctrl/hardpoints",
+    "m1-ctrl/actuators/center",
+    "m1-ctrl/actuators/outer",
+    "m2-ctrl/asm/preshape-filter",
+    "m2-ctrl/asm/pid-damping",
+    "m2-ctrl/asm/positionner",
+    "wfc/ngao",
+]
+
+[workspace.package]
+authors = ["Rod Conan <rconan@gmto.org>"]
+edition = "2021"
+license = "MIT"
+description = "Giant Magellan Telescope primary mirror control system"
+repository = "https://github.com/rconan/m1-ctrl"
+documentation = "https://docs.rs/gmt_m1-ctrl"
+readme = "README.md"
+categories = ["science", "simulation"]
+keywords = ["telescope", "astronomy"]
+
+[workspace.dependencies]
+matio-rs = "1.1.2"
+paste = "1.0.12"
+simulink-rs = "2.0.0"

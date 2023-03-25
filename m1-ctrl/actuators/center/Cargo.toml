@@ -1,0 +1,19 @@
+[package]
+name = "gmt_m1-ctrl_center-actuators"
+version = "0.1.2"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description.workspace = true
+repository.workspace = true
+documentation.workspace = true
+readme.workspace = true
+categories.workspace = true
+keywords.workspace = true
+
+[dependencies]
+paste.workspace = true
+simulink-rs.workspace = true
+
+[build-dependencies]
+simulink-rs.workspace = true
