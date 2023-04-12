@@ -3,30 +3,28 @@
  *
  * Code generated for Simulink model 'M1SA_Control_OA'.
  *
- * Model version                  : 5.28
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Tue Jan 24 16:42:52 2023
+ * Model version                  : 9.1
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Mon Apr 10 12:12:33 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_M1SA_Control_OA_h_
 #define RTW_HEADER_M1SA_Control_OA_h_
-#include <string.h>
 #ifndef M1SA_Control_OA_COMMON_INCLUDES_
 #define M1SA_Control_OA_COMMON_INCLUDES_
 #include "rtwtypes.h"
 #endif                                 /* M1SA_Control_OA_COMMON_INCLUDES_ */
 
 #include "M1SA_Control_OA_types.h"
+#include <string.h>
 #include "rt_defines.h"
 
-/* Macros for accessing real-time model data structure */
-
-/* Block states (default storage) for system '<Root>' */
+/* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
   real_T Fxcontroller_DSTATE[3];       /* '<S2>/Fx controller' */
   real_T Fycontroller_DSTATE[3];       /* '<S2>/Fy controller' */
@@ -45,17 +43,6 @@ typedef struct {
   real_T OAseg_Kbal_Gain[2010];
 } ConstP_M1SA_Control_OA_T;
 
-/* External inputs (root inport signals with default storage) */
-typedef struct {
-  real_T LC_FxyzMxyz_CG[6];            /* '<Root>/LC_FxyzMxyz_CG' */
-  real_T SA_offsetF_cmd[335];          /* '<Root>/SA_offsetF_cmd' */
-} ExtU_M1SA_Control_OA_T;
-
-/* External outputs (root outports fed by signals with default storage) */
-typedef struct {
-  real_T Res_Act_F[335];               /* '<Root>/Res_Act_F' */
-} ExtY_M1SA_Control_OA_T;
-
 /* Real-time Model Data Structure */
 struct tag_RTM_M1SA_Control_OA_T {
   DW_M1SA_Control_OA_T *dwork;
@@ -66,11 +53,10 @@ extern const ConstP_M1SA_Control_OA_T M1SA_Control_OA_ConstP;
 
 /* Model entry point functions */
 extern void M1SA_Control_OA_initialize(RT_MODEL_M1SA_Control_OA_T *const
-  M1SA_Control_OA_M, ExtU_M1SA_Control_OA_T *M1SA_Control_OA_U,
-  ExtY_M1SA_Control_OA_T *M1SA_Control_OA_Y);
+  M1SA_Control_OA_M);
 extern void M1SA_Control_OA_step(RT_MODEL_M1SA_Control_OA_T *const
-  M1SA_Control_OA_M, ExtU_M1SA_Control_OA_T *M1SA_Control_OA_U,
-  ExtY_M1SA_Control_OA_T *M1SA_Control_OA_Y);
+  M1SA_Control_OA_M, real_T M1SA_Control_OA_U_LC_FxyzMxyz_CG[6], real_T
+  M1SA_Control_OA_U_SA_offsetF_cmd[335], real_T M1SA_Control_OA_Y_Res_Act_F[335]);
 extern void M1SA_Control_OA_terminate(RT_MODEL_M1SA_Control_OA_T *const
   M1SA_Control_OA_M);
 

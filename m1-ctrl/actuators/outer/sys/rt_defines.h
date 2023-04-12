@@ -1,16 +1,16 @@
 /*
  * File: rt_defines.h
  *
- * Code generated for Simulink model 'HP_dyn_dTF'.
+ * Code generated for Simulink model 'M1SA_Control_OA'.
  *
- * Model version                  : 5.28
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Tue Jan 24 16:17:40 2023
+ * Model version                  : 9.1
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Mon Apr 10 12:12:33 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_rt_defines_h_
