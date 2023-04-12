@@ -118,7 +118,7 @@ switch build_subsys
             slbuild(m1SA_C_OA_label);
             slbuild(m1SA_C_CS_label);
         else
-            warning('Codes for models %s and %s were not build!',...
+            warning('The codes for models %s and %s were not built!',...
                 m1SA_C_OA_label, m1SA_C_CS_label);
             warning('Use %s and %s to compile the models.',...
                 "slbuild(m1SA_C_OA_label)","slbuild(m1SA_C_CS_label)");
@@ -139,12 +139,12 @@ switch build_subsys
         if (update_test_dt && ~exist('hp_dyn_step_test','var'))
             save hp_dyn_step_test hp_dyn_step_t hp_dyn_step_y
         else
-            warning('Update test data feture is disabled!')
+            warning('Update test data feature is disabled!')
         end
 
         if auto_compile, slbuild(hp_dyn_label+"/HP_dyn_dTF");
         else
-            warning('Code for model %s was not build!',hp_dyn_label);
+            warning('The code for model %s was not built!',hp_dyn_label);
             warning('Use slbuild(hp_dyn_label+"/HP_dyn_dTF") to compile the model.');
         end
 end
