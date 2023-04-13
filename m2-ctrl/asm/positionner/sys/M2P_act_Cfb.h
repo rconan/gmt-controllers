@@ -3,19 +3,18 @@
  *
  * Code generated for Simulink model 'M2P_act_Cfb'.
  *
- * Model version                  : 5.53
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Tue Feb 28 13:57:41 2023
+ * Model version                  : 9.4
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Thu Apr 13 11:04:05 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_M2P_act_Cfb_h_
 #define RTW_HEADER_M2P_act_Cfb_h_
-#include <string.h>
 #ifndef M2P_act_Cfb_COMMON_INCLUDES_
 #define M2P_act_Cfb_COMMON_INCLUDES_
 #include "rtwtypes.h"
@@ -24,55 +23,20 @@
 #include "M2P_act_Cfb_types.h"
 #include "rt_defines.h"
 
-/* Macros for accessing real-time model data structure */
-
-/* Block states (default storage) for system '<Root>' */
+/* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
   real_T M2P_I_rolloffF_states[3];     /* '<S1>/M2P_I_rolloffF' */
 } DW_M2P_act_Cfb_T;
-
-/* External inputs (root inport signals with default storage) */
-typedef struct {
-  real_T M2pAct_E;                     /* '<Root>/M2pAct_E' */
-} ExtU_M2P_act_Cfb_T;
-
-/* External outputs (root outports fed by signals with default storage) */
-typedef struct {
-  real_T M2pAct_U;                     /* '<Root>/M2pAct_U' */
-} ExtY_M2P_act_Cfb_T;
-
-/* Parameters (default storage) */
-struct P_M2P_act_Cfb_T_ {
-  real_T fc;                           /* Variable: fc
-                                        * Referenced by: '<S1>/m2p_om_c'
-                                        */
-  real_T k2p_stiff;                    /* Variable: k2p_stiff
-                                        * Referenced by: '<S1>/k2p_stiff'
-                                        */
-  real_T M2P_I_rolloffF_NumCoef[4];    /* Expression: m2p_Cfb_d.num{1}
-                                        * Referenced by: '<S1>/M2P_I_rolloffF'
-                                        */
-  real_T M2P_I_rolloffF_DenCoef[4];    /* Expression: m2p_Cfb_d.den{1}
-                                        * Referenced by: '<S1>/M2P_I_rolloffF'
-                                        */
-  real_T M2P_I_rolloffF_InitialStates; /* Expression: 0
-                                        * Referenced by: '<S1>/M2P_I_rolloffF'
-                                        */
-};
 
 /* Real-time Model Data Structure */
 struct tag_RTM_M2P_act_Cfb_T {
   DW_M2P_act_Cfb_T *dwork;
 };
 
-/* Block parameters (default storage) */
-extern P_M2P_act_Cfb_T M2P_act_Cfb_P;
-
 /* Model entry point functions */
-extern void M2P_act_Cfb_initialize(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M,
-  ExtU_M2P_act_Cfb_T *M2P_act_Cfb_U, ExtY_M2P_act_Cfb_T *M2P_act_Cfb_Y);
-extern void M2P_act_Cfb_step(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M,
-  ExtU_M2P_act_Cfb_T *M2P_act_Cfb_U, ExtY_M2P_act_Cfb_T *M2P_act_Cfb_Y);
+extern void M2P_act_Cfb_initialize(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M);
+extern void M2P_act_Cfb_step(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M, real_T
+  M2P_act_Cfb_U_M2pAct_E, real_T *M2P_act_Cfb_Y_M2pAct_U);
 extern void M2P_act_Cfb_terminate(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M);
 
 /*-

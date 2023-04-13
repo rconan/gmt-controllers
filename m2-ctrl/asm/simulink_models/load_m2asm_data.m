@@ -284,7 +284,6 @@ end
 %% Build ASM-based M2 models
 %%
 
-%%
 % Perhaps temporary solution before finding a proper location for the 
 % Simulink configuration settings script 
 currentFolder = pwd;
@@ -296,9 +295,9 @@ try
     fprintf('Simulink model configuration (%s) set successfully!\n',...
         cs_name);
 catch ME
+    warning('Unable to set model confgurations');
     cd(currentFolder);
     rethrow(ME);
-    error('Unable to set model confgurations');
 end
 % Return to the M2-ASM Simulink files folder
 cd(currentFolder);
