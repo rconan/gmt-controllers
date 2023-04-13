@@ -6,9 +6,9 @@
 % Fev, 2023: Segment-wise implementation
 
 % Flag to save/update test data file
-update_test_dt = true; %false;
+update_test_dt = false; %true; %
 % Flag to save/update controller data file
-update_calib_dt = true; %false;
+update_calib_dt = false; %true; %
 % Flag to compile M2-ASM model codes at the end of data loading process
 auto_compile = false;
 
@@ -284,18 +284,16 @@ end
 %% Build ASM-based M2 models
 %%
 
-% Perhaps temporary solution before finding a proper location for the 
-% Simulink configuration settings script 
 currentFolder = pwd;
 % Simulink configuration settings file folder
-cd('../../../m1-ctrl/simulink-models/');
+cd('../../../');
 try
     cs = config_slx2022b(ModelFName);
     cs_name = cs.get_param('Name');
     fprintf('Simulink model configuration (%s) set successfully!\n',...
         cs_name);
 catch ME
-    warning('Unable to set model confgurations');
+    warning('Unable to set model confgurations!');
     cd(currentFolder);
     rethrow(ME);
 end

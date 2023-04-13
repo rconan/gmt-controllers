@@ -7,9 +7,12 @@
 % Jan, 2023: Segment-wise implementation
 % Apr, 2022: Split decoupling matrices
 
-
-update_test_dt = false;
+% Flag to compile M1 control model codes at the end of data loading process
 auto_compile = false;
+% Flag to save/update test data file
+update_test_dt = false;%true; %
+% Flag to save/update controller data file
+update_calib_dt = false;%true; %
 
 %%
 load('controls_5pt1g1K_z30_llTT_oad.mat','m1sys','fem');
@@ -54,11 +57,14 @@ S5_M1RBM2HP = m1sys{5}.M1RBM2HP;
 S6_M1RBM2HP = m1sys{6}.M1RBM2HP;
 S7_M1RBM2HP = m1sys{7}.M1RBM2HP;
 
+if update_calib_dt
 save('../calib_dt/m1_ctrl_dt.mat',...
     'OA_LC2CG', 'CS_LC2CG', ...
     'm1_HPk',...
     'S1_M1RBM2HP', 'S2_M1RBM2HP', 'S3_M1RBM2HP', 'S4_M1RBM2HP',...
     'S5_M1RBM2HP', 'S6_M1RBM2HP', 'S7_M1RBM2HP');
+end
+
 
 %% Controller&Filter parameters
 % Support actuator dynamics (same for all segments)
@@ -84,15 +90,21 @@ m1SA_C_CS_label = sprintf('%s/M1SA_Control_CS' ,ModelFName);
 m1SA_C_OA_label = sprintf('%s/M1SA_Control_OA', ModelFName);
 
 % MATLAB function for configuration set
+currentFolder = pwd;
+% Simulink configuration settings file folder
+cd('../../');
 try
     cs = config_slx2022b(ModelFName);
     cs_name = cs.get_param('Name');
     fprintf('Simulink model configuration (%s) set successfully!\n',...
         cs_name);
 catch ME
-    warning('Unable to set model confgurations');
+    warning('Unable to set model confgurations!');
+    cd(currentFolder);
     rethrow(ME);
 end
+% Return to the m1-ctrl/simulink-models Simulink files folder
+cd(currentFolder);
 
 switch build_subsys
     case 'M1_SA'
