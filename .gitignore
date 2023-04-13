@@ -1,1 +1,9 @@
 /target
+
+*~
+*.asv
+*.autosave
+# Original Simulink compiled file folders
+m2-ctrl/asm/simulink-models/*_ert_rtw
+m1-ctrl/simulink-models/*_ert_rtw
+

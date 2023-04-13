@@ -3,20 +3,18 @@
  *
  * Code generated for Simulink model 'M1SA_Control_CS'.
  *
- * Model version                  : 5.28
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Tue Jan 24 16:48:50 2023
+ * Model version                  : 9.1
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Mon Apr 10 12:12:08 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_M1SA_Control_CS_types_h_
 #define RTW_HEADER_M1SA_Control_CS_types_h_
-
-/* Model Code Variants */
 
 /* Forward declaration for rtModel */
 typedef struct tag_RTM_M1SA_Control_CS_T RT_MODEL_M1SA_Control_CS_T;

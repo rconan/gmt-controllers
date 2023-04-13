@@ -3,11 +3,16 @@
 %
 % Load variables to compile M1 controller
 % 
+% Apr, 2023: Simulink settings in an external file (Matlab 2022b)
 % Jan, 2023: Segment-wise implementation
 % Apr, 2022: Split decoupling matrices
 
-
-update_test_dt = true;
+% Flag to compile M1 control model codes at the end of data loading process
+auto_compile = false;
+% Flag to save/update test data file
+update_test_dt = false;%true; %
+% Flag to save/update controller data file
+update_calib_dt = false;%true; %
 
 %%
 load('controls_5pt1g1K_z30_llTT_oad.mat','m1sys','fem');
@@ -52,11 +57,14 @@ S5_M1RBM2HP = m1sys{5}.M1RBM2HP;
 S6_M1RBM2HP = m1sys{6}.M1RBM2HP;
 S7_M1RBM2HP = m1sys{7}.M1RBM2HP;
 
+if update_calib_dt
 save('../calib_dt/m1_ctrl_dt.mat',...
     'OA_LC2CG', 'CS_LC2CG', ...
     'm1_HPk',...
     'S1_M1RBM2HP', 'S2_M1RBM2HP', 'S3_M1RBM2HP', 'S4_M1RBM2HP',...
     'S5_M1RBM2HP', 'S6_M1RBM2HP', 'S7_M1RBM2HP');
+end
+
 
 %% Controller&Filter parameters
 % Support actuator dynamics (same for all segments)
@@ -81,6 +89,23 @@ hp_stiff_label = sprintf('%s/HPk', ModelFName);
 m1SA_C_CS_label = sprintf('%s/M1SA_Control_CS' ,ModelFName);
 m1SA_C_OA_label = sprintf('%s/M1SA_Control_OA', ModelFName);
 
+% MATLAB function for configuration set
+currentFolder = pwd;
+% Simulink configuration settings file folder
+cd('../../');
+try
+    cs = config_slx2022b(ModelFName);
+    cs_name = cs.get_param('Name');
+    fprintf('Simulink model configuration (%s) set successfully!\n',...
+        cs_name);
+catch ME
+    warning('Unable to set model confgurations!');
+    cd(currentFolder);
+    rethrow(ME);
+end
+% Return to the m1-ctrl/simulink-models Simulink files folder
+cd(currentFolder);
+
 switch build_subsys
     case 'M1_SA'
         n_bm = 27; %size(m1sys{2}.m1BM2F,2);
@@ -104,6 +129,18 @@ switch build_subsys
 
         if (update_test_dt && ~exist('m1_act_impulse_test','var'))
             save m1_act_impulse_test OAact_imp_t OAact_imp_y CSact_imp_t CSact_imp_y
+        else
+            warning('Update test data feature is disabled!')
+        end
+
+        if auto_compile
+            slbuild(m1SA_C_OA_label); %#ok<*UNRCH> 
+            slbuild(m1SA_C_CS_label);
+        else
+            warning('The codes for models %s and %s were not built!',...
+                m1SA_C_OA_label, m1SA_C_CS_label);
+            warning('Use %s and %s to compile the models.',...
+                "slbuild(m1SA_C_OA_label)","slbuild(m1SA_C_CS_label)");
         end
         
     case 'HP_dyn'
@@ -120,45 +157,54 @@ switch build_subsys
         [hp_dyn_step_y,hp_dyn_step_t] = step(m1sys{1}.HPdtf);
         if (update_test_dt && ~exist('hp_dyn_step_test','var'))
             save hp_dyn_step_test hp_dyn_step_t hp_dyn_step_y
+        else
+            warning('Update test data feature is disabled!')
+        end
+
+        if auto_compile, slbuild(hp_dyn_label+"/HP_dyn_dTF");
+        else
+            warning('The code for model %s was not built!',hp_dyn_label);
+            warning('Use slbuild(hp_dyn_label+"/HP_dyn_dTF") to compile the model.');
         end
 end
+
 
 
 %% Older version
 %%
 %%%
-if 0
-    % Dimension of the M1 bending modes command vector
-    n_bm = 27; %#ok<UNRCH>
-    
-    load('controls_5pt3a_rr.mat','m1sys','fem');
-    % m1sys{seg}.HPstiff: Hardpoint stiffness
-    % m1sys{seg}.LC2CG: HP: F&M convertion matrix
-    % m1sys{seg}.ofl.SSdtC{ich}: M1 outer force loop controller
-    
-    % BM-2-F convertion
-    SAdataFolder = '/Users/rromano/Workspace/Build4';
-    load(fullfile(SAdataFolder,'SupportActuatorArrayConfig.mat'),...
-        'OA_Kbal','OA_Kred','CS_Kbal','CS_Kred');
-    
-    StructModelFolder = fullfile(im.lfFolder,"20210802_0755_MT_mount_v202104_FSM");
-    % OA
-    filename = fullfile(StructModelFolder,'m1s1_Af.mat');
-    load(filename,'afprime');
-    [~,S,V] = svd(afprime,0);
-    % BM to forces convertion matrix (3*n_a)
-    m1BM2Fxyz = kron(eye(size(afprime,2)),[0;0;1]) * V(:,1:n_bm)*...
-        diag(1./diag(S(1:n_bm,1:n_bm)));
-    m1BM2F_OA = OA_Kred*m1BM2Fxyz;
-    
-    filename = fullfile(StructModelFolder,'m1s7_Af.mat');
-    load(filename,'afprime');
-    [~,S,V] = svd(afprime,0);
-    % BM to forces convertion matrix (3*n_a)
-    m1BM2Fxyz = kron(eye(size(afprime,2)),[0;0;1]) * V(:,1:n_bm)*...
-        diag(1./diag(S(1:n_bm,1:n_bm)));
-    m1BM2F_CS = CS_Kred*m1BM2Fxyz;
-
-end
+% if 0
+%     % Dimension of the M1 bending modes command vector
+%     n_bm = 27; %#ok<UNRCH>
+%     
+%     load('controls_5pt3a_rr.mat','m1sys','fem');
+%     % m1sys{seg}.HPstiff: Hardpoint stiffness
+%     % m1sys{seg}.LC2CG: HP: F&M convertion matrix
+%     % m1sys{seg}.ofl.SSdtC{ich}: M1 outer force loop controller
+%     
+%     % BM-2-F convertion
+%     SAdataFolder = '/Users/rromano/Workspace/Build4';
+%     load(fullfile(SAdataFolder,'SupportActuatorArrayConfig.mat'),...
+%         'OA_Kbal','OA_Kred','CS_Kbal','CS_Kred');
+%     
+%     StructModelFolder = fullfile(im.lfFolder,"20210802_0755_MT_mount_v202104_FSM");
+%     % OA
+%     filename = fullfile(StructModelFolder,'m1s1_Af.mat');
+%     load(filename,'afprime');
+%     [~,S,V] = svd(afprime,0);
+%     % BM to forces convertion matrix (3*n_a)
+%     m1BM2Fxyz = kron(eye(size(afprime,2)),[0;0;1]) * V(:,1:n_bm)*...
+%         diag(1./diag(S(1:n_bm,1:n_bm)));
+%     m1BM2F_OA = OA_Kred*m1BM2Fxyz;
+%     
+%     filename = fullfile(StructModelFolder,'m1s7_Af.mat');
+%     load(filename,'afprime');
+%     [~,S,V] = svd(afprime,0);
+%     % BM to forces convertion matrix (3*n_a)
+%     m1BM2Fxyz = kron(eye(size(afprime,2)),[0;0;1]) * V(:,1:n_bm)*...
+%         diag(1./diag(S(1:n_bm,1:n_bm)));
+%     m1BM2F_CS = CS_Kred*m1BM2Fxyz;
+% 
+% end
 
 
