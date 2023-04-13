@@ -3,24 +3,18 @@
  *
  * Code generated for Simulink model 'ASM_preshapeBesselF'.
  *
- * Model version                  : 5.39
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Wed Feb 22 12:27:12 2023
+ * Model version                  : 9.4
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Thu Apr 13 10:34:30 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_ASM_preshapeBesselF_types_h_
 #define RTW_HEADER_ASM_preshapeBesselF_types_h_
-#include "rtwtypes.h"
-
-/* Model Code Variants */
-
-/* Parameters (default storage) */
-typedef struct P_ASM_preshapeBesselF_T_ P_ASM_preshapeBesselF_T;
 
 /* Forward declaration for rtModel */
 typedef struct tag_RTM_ASM_preshapeBesselF_T RT_MODEL_ASM_preshapeBesselF_T;

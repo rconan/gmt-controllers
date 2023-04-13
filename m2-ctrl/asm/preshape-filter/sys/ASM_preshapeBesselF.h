@@ -3,80 +3,44 @@
  *
  * Code generated for Simulink model 'ASM_preshapeBesselF'.
  *
- * Model version                  : 5.39
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Wed Feb 22 12:27:12 2023
+ * Model version                  : 9.4
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Thu Apr 13 10:34:30 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_ASM_preshapeBesselF_h_
 #define RTW_HEADER_ASM_preshapeBesselF_h_
-#include <string.h>
 #ifndef ASM_preshapeBesselF_COMMON_INCLUDES_
 #define ASM_preshapeBesselF_COMMON_INCLUDES_
 #include "rtwtypes.h"
 #endif                                /* ASM_preshapeBesselF_COMMON_INCLUDES_ */
 
 #include "ASM_preshapeBesselF_types.h"
+#include <string.h>
 #include "rt_defines.h"
 
-/* Macros for accessing real-time model data structure */
-
-/* Block states (default storage) for system '<Root>' */
+/* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
   real_T SSflag_d_DSTATE[4];           /* '<S1>/SS flag_d' */
 } DW_ASM_preshapeBesselF_T;
-
-/* External inputs (root inport signals with default storage) */
-typedef struct {
-  real_T AO_cmd;                       /* '<Root>/AO_cmd' */
-} ExtU_ASM_preshapeBesselF_T;
-
-/* External outputs (root outports fed by signals with default storage) */
-typedef struct {
-  real_T cmd_f_ddot;                   /* '<Root>/cmd_f_ddot' */
-  real_T cmd_f_dot;                    /* '<Root>/cmd_f_dot' */
-  real_T cmd_f;                        /* '<Root>/cmd_f' */
-} ExtY_ASM_preshapeBesselF_T;
-
-/* Parameters (default storage) */
-struct P_ASM_preshapeBesselF_T_ {
-  real_T SSflag_d_A[16];               /* Computed Parameter: SSflag_d_A
-                                        * Referenced by: '<S1>/SS flag_d'
-                                        */
-  real_T SSflag_d_B[4];                /* Computed Parameter: SSflag_d_B
-                                        * Referenced by: '<S1>/SS flag_d'
-                                        */
-  real_T SSflag_d_C[3];                /* Computed Parameter: SSflag_d_C
-                                        * Referenced by: '<S1>/SS flag_d'
-                                        */
-  real_T SSflag_d_D[3];                /* Computed Parameter: SSflag_d_D
-                                        * Referenced by: '<S1>/SS flag_d'
-                                        */
-  real_T SSflag_d_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<S1>/SS flag_d'
-                                        */
-};
 
 /* Real-time Model Data Structure */
 struct tag_RTM_ASM_preshapeBesselF_T {
   DW_ASM_preshapeBesselF_T *dwork;
 };
 
-/* Block parameters (default storage) */
-extern P_ASM_preshapeBesselF_T ASM_preshapeBesselF_P;
-
 /* Model entry point functions */
 extern void ASM_preshapeBesselF_initialize(RT_MODEL_ASM_preshapeBesselF_T *const
-  ASM_preshapeBesselF_M, ExtU_ASM_preshapeBesselF_T *ASM_preshapeBesselF_U,
-  ExtY_ASM_preshapeBesselF_T *ASM_preshapeBesselF_Y);
+  ASM_preshapeBesselF_M);
 extern void ASM_preshapeBesselF_step(RT_MODEL_ASM_preshapeBesselF_T *const
-  ASM_preshapeBesselF_M, ExtU_ASM_preshapeBesselF_T *ASM_preshapeBesselF_U,
-  ExtY_ASM_preshapeBesselF_T *ASM_preshapeBesselF_Y);
+  ASM_preshapeBesselF_M, real_T ASM_preshapeBesselF_U_AO_cmd, real_T
+  *ASM_preshapeBesselF_Y_cmd_f_ddot, real_T *ASM_preshapeBesselF_Y_cmd_f_dot,
+  real_T *ASM_preshapeBesselF_Y_cmd_f);
 extern void ASM_preshapeBesselF_terminate(RT_MODEL_ASM_preshapeBesselF_T *const
   ASM_preshapeBesselF_M);
 
