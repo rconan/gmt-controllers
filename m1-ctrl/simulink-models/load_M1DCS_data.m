@@ -84,8 +84,15 @@ m1SA_C_CS_label = sprintf('%s/M1SA_Control_CS' ,ModelFName);
 m1SA_C_OA_label = sprintf('%s/M1SA_Control_OA', ModelFName);
 
 % MATLAB function for configuration set
-config_slx2022b;
-fprintf('Setting simulink model configuration\n');
+try
+    cs = config_slx2022b(ModelFName);
+    cs_name = cs.get_param('Name');
+    fprintf('Simulink model configuration (%s) set successfully!\n',...
+        cs_name);
+catch ME
+    warning('Unable to set model confgurations');
+    rethrow(ME);
+end
 
 switch build_subsys
     case 'M1_SA'
@@ -111,11 +118,11 @@ switch build_subsys
         if (update_test_dt && ~exist('m1_act_impulse_test','var'))
             save m1_act_impulse_test OAact_imp_t OAact_imp_y CSact_imp_t CSact_imp_y
         else
-            warning('Update test data feture is disabled!')
+            warning('Update test data feature is disabled!')
         end
 
         if auto_compile
-            slbuild(m1SA_C_OA_label);
+            slbuild(m1SA_C_OA_label); %#ok<*UNRCH> 
             slbuild(m1SA_C_CS_label);
         else
             warning('The codes for models %s and %s were not built!',...
@@ -149,67 +156,6 @@ switch build_subsys
         end
 end
 
-
-
-
-
-
-%% Some relevant setting, now incorporated into config_slx2022b.m
-%%
-if false
-    cs = getActiveConfigSet(gcs); %#ok<*UNRCH> 
-    % Model Solver
-    set_param(cs, 'SolverType', 'Fixed-step');
-
-    % Solver
-    set_param(cs,'SolverName', 'FixedStepDiscrete');   % Solver
-    set_param(cs,'SolverType', 'Fixed-step');   % Type
-    set_param(cs,'SampleTimeConstraint', 'Unconstrained');   % Periodic sample time constraint
-    set_param(cs,'FixedStep', 'deltaT');   % Fixed-step size (fundamental sample time)
-    set_param(cs,'ConcurrentTasks', 'off');   % Allow tasks to execute concurrently on target
-    set_param(cs,'EnableMultiTasking', 'off');   % Treat each discrete rate as a separate task
-    set_param(cs,'AllowMultiTaskInputOutput', 'off');   % Allow multiple tasks to access inputs and outputs
-    set_param(cs,'PositivePriorityOrder', 'off');   % Higher priority value indicates higher task priority
-    set_param(cs,'AutoInsertRateTranBlk', 'off');   % Automatically handle rate transition for data transfer
-
-    % Model Configuration Parameters: Code Generation
-    % https://www.mathworks.com/help/rtw/ref/code-generation-pane-general.html
-    set_param(cs,'SystemTargetFile','ert.tlc');
-    set_param(cs,'TargetLang','C');
-    set_param(cs,'GenCodeOnly','on');
-    set_param(cs,'RTWCompilerOptimization','on');
-    set_param(cs,'BuildConfiguration','Faster Runs'); % Default: 'Faster Builds'
-    set_param(cs,'GenerateMakefile','off'); % Default: 'on'
-    set_param(cs,'ObjectivePriorities','Execution efficiency'); % Default: ''
-    set_param(cs,'CheckMdlBeforeBuild','Warning');  % Default: 'off'
-    % Model Configuration Parameters: Code Generation Optimization
-    % https://www.mathworks.com/help/rtw/ref/optimization-pane-general.html
-    set_param(cs,'DefaultParameterBehavior','Inlined');
-    set_param(cs,'PassReuseOutputArgsAs','Individual arguments');
-    set_param(cs,'ZeroInternalMemoryAtStartup','on');
-    set_param(cs,'ZeroExternalMemoryAtStartup','on');
-
-    set_param(cs,'OptimizeBlockIOStorage','on');
-
-    % EnableMemcpy,On ()
-    set_param(cs,'GenCodeOnly','on');
-
-    % https://www.mathworks.com/help/rtw/ug/configure-code-generation-parameters-for-model-programmatically.html
-    % If your application objective is Execution efficiency, use set_param to modify these parameters:
-    set_param(cs,'MatFileLogging','off');
-    set_param(cs,'SupportNonFinite','off');
-    % set_param(cs,'RTWCompilerOptimization','on');
-    % set_param(cs,'OptimizeBlockIOStorage','on');
-    set_param(cs,'EnhancedBackFolding','on');
-    set_param(cs,'ConditionallyExecuteInputs','on')
-    % set_param(cs,'DefaultParameterBehavior','Inlined');
-    set_param(cs,'BooleanDataType','on');
-    set_param(cs,'BlockReduction','on');
-    set_param(cs,'ExpressionFolding','on');
-    set_param(cs,'LocalBlockOutputs','on');
-    set_param(cs,'EfficientFloat2IntCast','on');
-    set_param(cs,'BufferReuse','on');
-end
 
 
 %% Older version
