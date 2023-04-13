@@ -3,24 +3,18 @@
  *
  * Code generated for Simulink model 'ASM_PIplusD_Fd'.
  *
- * Model version                  : 5.43
- * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Wed Feb 22 17:47:07 2023
+ * Model version                  : 9.4
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Thu Apr 13 10:55:30 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
- * Code generation objectives: Unspecified
- * Validation result: Not run
+ * Code generation objective: Execution efficiency
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_ASM_PIplusD_Fd_types_h_
 #define RTW_HEADER_ASM_PIplusD_Fd_types_h_
-#include "rtwtypes.h"
-
-/* Model Code Variants */
-
-/* Parameters (default storage) */
-typedef struct P_ASM_PIplusD_Fd_T_ P_ASM_PIplusD_Fd_T;
 
 /* Forward declaration for rtModel */
 typedef struct tag_RTM_ASM_PIplusD_Fd_T RT_MODEL_ASM_PIplusD_Fd_T;
