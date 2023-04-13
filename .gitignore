@@ -1,1 +1,7 @@
 /target
+
+*~
+*.asv
+*.autosave
+
+m2-ctrl/asm/simulink_models/*_ert_rtw

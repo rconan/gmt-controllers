@@ -9,6 +9,9 @@
 update_test_dt = true; %false;
 % Flag to save/update controller data file
 update_calib_dt = true; %false;
+% Flag to compile M2-ASM model codes at the end of data loading process
+auto_compile = false;
+
 % Controller sampling period
 Ts = 1/8e3;
 
@@ -277,5 +280,42 @@ if (update_test_dt && ~exist('m2asm_tests','var'))
         'm2pact_fb_imp_y','m2pact_fb_imp_t');
 end
 
+
+%% Build ASM-based M2 models
+%%
+
+%%
+% Perhaps temporary solution before finding a proper location for the 
+% Simulink configuration settings script 
+currentFolder = pwd;
+% Simulink configuration settings file folder
+cd('../../../m1-ctrl/simulink-models/');
+try
+    cs = config_slx2022b(ModelFName);
+    cs_name = cs.get_param('Name');
+    fprintf('Simulink model configuration (%s) set successfully!\n',...
+        cs_name);
+catch ME
+    cd(currentFolder);
+    rethrow(ME);
+    error('Unable to set model confgurations');
+end
+% Return to the M2-ASM Simulink files folder
+cd(currentFolder);
+
+pshapeBesselF_label = sprintf('%s/ASM_preshapeBesselF', ModelFName);
+asmPID_Fd_label = sprintf('%s/ASM_PIplusD_Fd', ModelFName);
+m2p_Cfb_label = sprintf('%s/M2P_act_Cfb', ModelFName);
+
+if auto_compile
+    slbuild(pshapeBesselF_label);
+    slbuild(asmPID_Fd_label);
+    slbuild(m2p_Cfb_label);
+else
+    warning('The code for models was not built! ');
+    warning(strcat('Use slbuild(pshapeBesselF_label), ',...
+        'slbuild(asmPID_Fd_label), and slbuild(m2p_Cfb_label) ',...
+        'to compile M2-ASM model codes.'));
+end
 
 %[eof]

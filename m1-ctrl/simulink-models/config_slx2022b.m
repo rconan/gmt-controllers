@@ -1,8 +1,8 @@
-function cs = config_slx2022b()
+function cs = config_slx2022b(gcs)
 % MATLAB function for configuration set generated on 10-Apr-2023 12:11:13
 % MATLAB version: 9.13.0.2126072 (R2022b) Update 3
 
-cs = Simulink.ConfigSet;
+cs = getActiveConfigSet(gcs);
 
 % Original configuration set version: 22.1.0
 if cs.versionCompare('22.1.0') < 0
@@ -12,7 +12,7 @@ end
 % Character encoding: UTF-8
 
 % Do not change the order of the following commands. There are dependencies between the parameters.
-cs.set_param('Name', 'Configuration5'); % Name
+cs.set_param('Name', 'RustBuild_cfg'); % Name
 cs.set_param('Description', ''); % Description
 
 % Original configuration set target is ert.tlc
@@ -265,6 +265,7 @@ cs.set_param('GPUAcceleration', 'off');   % GPU acceleration
 cs.set_param('SimTargetLang', 'C');   % Language
 
 % Code Generation
+set_param(cs,'BuildConfiguration','Faster Runs'); % Default: 'Faster Builds'
 cs.set_param('ExistingSharedCode', '');   % Existing shared code
 cs.set_param('EmbeddedCoderDictionary', '');   % Shared coder dictionary
 cs.set_param('TLCOptions', '');   % TLC command line options
