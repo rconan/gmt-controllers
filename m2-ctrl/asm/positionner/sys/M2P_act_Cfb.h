@@ -5,7 +5,7 @@
  *
  * Model version                  : 9.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Apr 13 11:04:05 2023
+ * C/C++ source code generated on : Fri Apr 14 16:12:21 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -28,6 +28,16 @@ typedef struct {
   real_T M2P_I_rolloffF_states[3];     /* '<S1>/M2P_I_rolloffF' */
 } DW_M2P_act_Cfb_T;
 
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T M2pAct_E;                     /* '<Root>/M2pAct_E' */
+} ExtU_M2P_act_Cfb_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T M2pAct_U;                     /* '<Root>/M2pAct_U' */
+} ExtY_M2P_act_Cfb_T;
+
 /* Real-time Model Data Structure */
 struct tag_RTM_M2P_act_Cfb_T {
   DW_M2P_act_Cfb_T *dwork;
@@ -35,8 +45,8 @@ struct tag_RTM_M2P_act_Cfb_T {
 
 /* Model entry point functions */
 extern void M2P_act_Cfb_initialize(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M);
-extern void M2P_act_Cfb_step(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M, real_T
-  M2P_act_Cfb_U_M2pAct_E, real_T *M2P_act_Cfb_Y_M2pAct_U);
+extern void M2P_act_Cfb_step(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M,
+  ExtU_M2P_act_Cfb_T *M2P_act_Cfb_U, ExtY_M2P_act_Cfb_T *M2P_act_Cfb_Y);
 extern void M2P_act_Cfb_terminate(RT_MODEL_M2P_act_Cfb_T *const M2P_act_Cfb_M);
 
 /*-

@@ -5,7 +5,7 @@
  *
  * Model version                  : 9.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Apr 13 10:34:30 2023
+ * C/C++ source code generated on : Fri Apr 14 16:03:45 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -29,6 +29,18 @@ typedef struct {
   real_T SSflag_d_DSTATE[4];           /* '<S1>/SS flag_d' */
 } DW_ASM_preshapeBesselF_T;
 
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T AO_cmd;                       /* '<Root>/AO_cmd' */
+} ExtU_ASM_preshapeBesselF_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T cmd_f_ddot;                   /* '<Root>/cmd_f_ddot' */
+  real_T cmd_f_dot;                    /* '<Root>/cmd_f_dot' */
+  real_T cmd_f;                        /* '<Root>/cmd_f' */
+} ExtY_ASM_preshapeBesselF_T;
+
 /* Real-time Model Data Structure */
 struct tag_RTM_ASM_preshapeBesselF_T {
   DW_ASM_preshapeBesselF_T *dwork;
@@ -38,9 +50,8 @@ struct tag_RTM_ASM_preshapeBesselF_T {
 extern void ASM_preshapeBesselF_initialize(RT_MODEL_ASM_preshapeBesselF_T *const
   ASM_preshapeBesselF_M);
 extern void ASM_preshapeBesselF_step(RT_MODEL_ASM_preshapeBesselF_T *const
-  ASM_preshapeBesselF_M, real_T ASM_preshapeBesselF_U_AO_cmd, real_T
-  *ASM_preshapeBesselF_Y_cmd_f_ddot, real_T *ASM_preshapeBesselF_Y_cmd_f_dot,
-  real_T *ASM_preshapeBesselF_Y_cmd_f);
+  ASM_preshapeBesselF_M, ExtU_ASM_preshapeBesselF_T *ASM_preshapeBesselF_U,
+  ExtY_ASM_preshapeBesselF_T *ASM_preshapeBesselF_Y);
 extern void ASM_preshapeBesselF_terminate(RT_MODEL_ASM_preshapeBesselF_T *const
   ASM_preshapeBesselF_M);
 

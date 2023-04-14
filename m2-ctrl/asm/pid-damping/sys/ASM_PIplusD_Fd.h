@@ -5,7 +5,7 @@
  *
  * Model version                  : 9.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Apr 13 10:55:30 2023
+ * C/C++ source code generated on : Fri Apr 14 16:10:20 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -29,6 +29,19 @@ typedef struct {
   real_T Numericaldifferentiation_states;/* '<S1>/Numerical differentiation' */
 } DW_ASM_PIplusD_Fd_T;
 
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T asm_SP;                       /* '<Root>/asm_SP' */
+  real_T asm_FB;                       /* '<Root>/asm_FB' */
+  real_T asm_FF;                       /* '<Root>/asm_FF' */
+} ExtU_ASM_PIplusD_Fd_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T asm_U;                        /* '<Root>/asm_U' */
+  real_T asm_Fd;                       /* '<Root>/asm_Fd' */
+} ExtY_ASM_PIplusD_Fd_T;
+
 /* Real-time Model Data Structure */
 struct tag_RTM_ASM_PIplusD_Fd_T {
   DW_ASM_PIplusD_Fd_T *dwork;
@@ -38,9 +51,8 @@ struct tag_RTM_ASM_PIplusD_Fd_T {
 extern void ASM_PIplusD_Fd_initialize(RT_MODEL_ASM_PIplusD_Fd_T *const
   ASM_PIplusD_Fd_M);
 extern void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const
-  ASM_PIplusD_Fd_M, real_T ASM_PIplusD_Fd_U_asm_SP, real_T
-  ASM_PIplusD_Fd_U_asm_FB, real_T ASM_PIplusD_Fd_U_asm_FF, real_T
-  *ASM_PIplusD_Fd_Y_asm_U, real_T *ASM_PIplusD_Fd_Y_asm_Fd);
+  ASM_PIplusD_Fd_M, ExtU_ASM_PIplusD_Fd_T *ASM_PIplusD_Fd_U,
+  ExtY_ASM_PIplusD_Fd_T *ASM_PIplusD_Fd_Y);
 extern void ASM_PIplusD_Fd_terminate(RT_MODEL_ASM_PIplusD_Fd_T *const
   ASM_PIplusD_Fd_M);
 
