@@ -5,7 +5,7 @@
  *
  * Model version                  : 9.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Apr 13 10:55:30 2023
+ * C/C++ source code generated on : Fri Apr 14 16:10:20 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -18,9 +18,8 @@
 
 /* Model step function */
 void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const ASM_PIplusD_Fd_M,
-  real_T ASM_PIplusD_Fd_U_asm_SP, real_T ASM_PIplusD_Fd_U_asm_FB, real_T
-  ASM_PIplusD_Fd_U_asm_FF, real_T *ASM_PIplusD_Fd_Y_asm_U, real_T
-  *ASM_PIplusD_Fd_Y_asm_Fd)
+  ExtU_ASM_PIplusD_Fd_T *ASM_PIplusD_Fd_U, ExtY_ASM_PIplusD_Fd_T
+  *ASM_PIplusD_Fd_Y)
 {
   DW_ASM_PIplusD_Fd_T *ASM_PIplusD_Fd_DW = ASM_PIplusD_Fd_M->dwork;
   real_T denAccum;
@@ -28,17 +27,13 @@ void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const ASM_PIplusD_Fd_M,
   real_T rtb_Numericaldifferentiation;
 
   /* DiscreteTransferFcn: '<S1>/ASM PI controller' incorporates:
-   *  Inport: '<Root>/asm_FB'
-   *  Inport: '<Root>/asm_SP'
    *  Sum: '<S1>/Sum1'
    */
-  denAccum = (ASM_PIplusD_Fd_U_asm_SP - ASM_PIplusD_Fd_U_asm_FB) -
+  denAccum = (ASM_PIplusD_Fd_U->asm_SP - ASM_PIplusD_Fd_U->asm_FB) -
     (-ASM_PIplusD_Fd_DW->ASMPIcontroller_states);
 
-  /* DiscreteTransferFcn: '<S1>/Numerical differentiation' incorporates:
-   *  Inport: '<Root>/asm_FB'
-   */
-  denAccum_0 = ASM_PIplusD_Fd_U_asm_FB - -0.043213918263772258 *
+  /* DiscreteTransferFcn: '<S1>/Numerical differentiation' */
+  denAccum_0 = ASM_PIplusD_Fd_U->asm_FB - -0.043213918263772258 *
     ASM_PIplusD_Fd_DW->Numericaldifferentiation_states;
   rtb_Numericaldifferentiation = 7654.28865388982 * denAccum_0 +
     -7654.2886538898265 * ASM_PIplusD_Fd_DW->Numericaldifferentiation_states;
@@ -46,18 +41,17 @@ void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const ASM_PIplusD_Fd_M,
   /* Outport: '<Root>/asm_U' incorporates:
    *  DiscreteTransferFcn: '<S1>/ASM PI controller'
    *  Gain: '<S1>/Kd'
-   *  Inport: '<Root>/asm_FF'
    *  Sum: '<S1>/Sum3'
    *  Sum: '<S1>/Sum4'
    */
-  *ASM_PIplusD_Fd_Y_asm_U = ((70031.25 * denAccum + -69968.750000000015 *
+  ASM_PIplusD_Fd_Y->asm_U = ((70031.25 * denAccum + -69968.750000000015 *
     ASM_PIplusD_Fd_DW->ASMPIcontroller_states) - 24.5 *
-    rtb_Numericaldifferentiation) + ASM_PIplusD_Fd_U_asm_FF;
+    rtb_Numericaldifferentiation) + ASM_PIplusD_Fd_U->asm_FF;
 
   /* Outport: '<Root>/asm_Fd' incorporates:
    *  Gain: '<S1>/-Kfdamp'
    */
-  *ASM_PIplusD_Fd_Y_asm_Fd = -9.1 * rtb_Numericaldifferentiation;
+  ASM_PIplusD_Fd_Y->asm_Fd = -9.1 * rtb_Numericaldifferentiation;
 
   /* Update for DiscreteTransferFcn: '<S1>/ASM PI controller' */
   ASM_PIplusD_Fd_DW->ASMPIcontroller_states = denAccum;
