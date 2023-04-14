@@ -3,14 +3,14 @@
  *
  * Code generated for Simulink model 'HP_dyn_dTF'.
  *
- * Model version                  : 9.2
+ * Model version                  : 9.6
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Wed Apr 12 14:39:19 2023
+ * C/C++ source code generated on : Fri Apr 14 14:07:31 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: All passed
+ * Validation result: Not run
  */
 
 #ifndef RTW_HEADER_HP_dyn_dTF_h_
@@ -28,6 +28,16 @@ typedef struct {
   real_T HP_dyn_dTF_states[24];        /* '<S1>/HP_dyn_dTF' */
 } DW_HP_dyn_dTF_T;
 
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T In1[6];                       /* '<Root>/In1' */
+} ExtU_HP_dyn_dTF_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T Out1[6];                      /* '<Root>/Out1' */
+} ExtY_HP_dyn_dTF_T;
+
 /* Real-time Model Data Structure */
 struct tag_RTM_HP_dyn_dTF_T {
   DW_HP_dyn_dTF_T *dwork;
@@ -35,8 +45,8 @@ struct tag_RTM_HP_dyn_dTF_T {
 
 /* Model entry point functions */
 extern void HP_dyn_dTF_initialize(RT_MODEL_HP_dyn_dTF_T *const HP_dyn_dTF_M);
-extern void HP_dyn_dTF_step(RT_MODEL_HP_dyn_dTF_T *const HP_dyn_dTF_M, real_T
-  HP_dyn_dTF_U_In1[6], real_T HP_dyn_dTF_Y_Out1[6]);
+extern void HP_dyn_dTF_step(RT_MODEL_HP_dyn_dTF_T *const HP_dyn_dTF_M,
+  ExtU_HP_dyn_dTF_T *HP_dyn_dTF_U, ExtY_HP_dyn_dTF_T *HP_dyn_dTF_Y);
 extern void HP_dyn_dTF_terminate(RT_MODEL_HP_dyn_dTF_T *const HP_dyn_dTF_M);
 
 /*-
