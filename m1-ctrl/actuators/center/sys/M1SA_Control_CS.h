@@ -3,14 +3,14 @@
  *
  * Code generated for Simulink model 'M1SA_Control_CS'.
  *
- * Model version                  : 9.1
+ * Model version                  : 9.6
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Apr 10 12:12:08 2023
+ * C/C++ source code generated on : Fri Apr 14 14:01:52 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: All passed
+ * Validation result: Not run
  */
 
 #ifndef RTW_HEADER_M1SA_Control_CS_h_
@@ -43,6 +43,17 @@ typedef struct {
   real_T CS_Kbal_Gain[1836];
 } ConstP_M1SA_Control_CS_T;
 
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T LC_FxyzMxyz_CG[6];            /* '<Root>/LC_FxyzMxyz_CG' */
+  real_T SA_offsetF_cmd[306];          /* '<Root>/SA_offsetF_cmd' */
+} ExtU_M1SA_Control_CS_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T Res_Act_F[306];               /* '<Root>/Res_Act_F' */
+} ExtY_M1SA_Control_CS_T;
+
 /* Real-time Model Data Structure */
 struct tag_RTM_M1SA_Control_CS_T {
   DW_M1SA_Control_CS_T *dwork;
@@ -55,8 +66,8 @@ extern const ConstP_M1SA_Control_CS_T M1SA_Control_CS_ConstP;
 extern void M1SA_Control_CS_initialize(RT_MODEL_M1SA_Control_CS_T *const
   M1SA_Control_CS_M);
 extern void M1SA_Control_CS_step(RT_MODEL_M1SA_Control_CS_T *const
-  M1SA_Control_CS_M, real_T M1SA_Control_CS_U_LC_FxyzMxyz_CG[6], real_T
-  M1SA_Control_CS_U_SA_offsetF_cmd[306], real_T M1SA_Control_CS_Y_Res_Act_F[306]);
+  M1SA_Control_CS_M, ExtU_M1SA_Control_CS_T *M1SA_Control_CS_U,
+  ExtY_M1SA_Control_CS_T *M1SA_Control_CS_Y);
 extern void M1SA_Control_CS_terminate(RT_MODEL_M1SA_Control_CS_T *const
   M1SA_Control_CS_M);
 

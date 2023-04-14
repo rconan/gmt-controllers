@@ -86,6 +86,8 @@ cs.set_param('OptimizationCustomize', 'off');   % Specify custom optimizations
 cs.set_param('BitwiseOrLogicalOp', 'Same as modeled');   % Operator to represent Bitwise and Logical Operator blocks
 cs.set_param('MemcpyThreshold', 64);   % Memcpy threshold (bytes)
 cs.set_param('PassReuseOutputArgsAs', 'Individual arguments');   % Pass reusable subsystem outputs as
+% cs.set_param('PassReuseOutputArgsAs', 'Structure reference');   % Pass reusable subsystem outputs as
+%
 cs.set_param('PassReuseOutputArgsThreshold', 12);   % Maximum number of arguments for subsystem outputs
 cs.set_param('RollThreshold', 5);   % Loop unrolling threshold
 cs.set_param('ActiveStateOutputEnumStorageType', 'Native Integer');   % Base storage type for automatically created enumerations
@@ -312,7 +314,11 @@ cs.set_param('GenerateWebview', 'off');   % Generate model Web view
 cs.set_param('GenerateCodeMetricsReport', 'off');   % Generate static code metrics
 cs.set_param('GenerateCodeReplacementReport', 'off');   % Summarize which blocks triggered code replacements
 cs.set_param('ObjectivePriorities', {'Execution efficiency'});   % Prioritized objectives
+% cs.set_param('ObjectivePriorities', {''});   % Prioritized objectives
+% 
 cs.set_param('CheckMdlBeforeBuild', 'Warning');   % Check model before generating code
+% cs.set_param('CheckMdlBeforeBuild', 'off');   % Check model before generating code
+%
 cs.set_param('GenerateComments', 'on');   % Include comments
 cs.set_param('ForceParamTrailComments', 'on');   % Verbose comments for 'Model default' storage class
 cs.set_param('CommentStyle', 'Auto');   % Comment style
@@ -402,7 +408,9 @@ cs.set_param('ExtModeMexArgs', '');   % MEX-file arguments
 cs.set_param('ExtModeIntrfLevel', 'Level1');   % External mode interface level
 cs.set_param('TargetOS', 'BareBoardExample');   % Target operating system
 cs.set_param('MultiInstanceErrorCode', 'Error');   % Multi-instance code error diagnostic
-cs.set_param('RootIOFormat', 'Individual arguments');   % Pass root-level I/O as
+% cs.set_param('RootIOFormat', 'Individual arguments');   % Pass root-level I/O as
+cs.set_param('RootIOFormat', 'Structure reference');   % Pass root-level I/O as
+%
 cs.set_param('RTWCAPISignals', 'off');   % Generate C API for signals
 cs.set_param('RTWCAPIParams', 'off');   % Generate C API for parameters
 cs.set_param('RTWCAPIStates', 'off');   % Generate C API for states
