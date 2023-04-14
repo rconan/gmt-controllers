@@ -16,7 +16,7 @@ mod tests {
     fn step() {
         let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
             .join("..")
-            .join("simulink_models")
+            .join("simulink-models")
             .join("m2asm_tests.mat");
         let mat = MatFile::load(path.to_str().unwrap()).unwrap();
         let preshape_bessel_step_t: Vec<f64> = mat.var("preshapeBessel_step_t").unwrap();
