@@ -6,7 +6,7 @@
 % Fev, 2023: Segment-wise implementation
 
 % Flag to save/update test data file
-update_test_dt = false; %true; %
+update_test_dt = true; %false; %
 % Flag to save/update controller data file
 update_calib_dt = false; %true; %
 % Flag to compile M2-ASM model codes at the end of data loading process
@@ -96,7 +96,7 @@ end
 %%
 
 % ASM inner loop controller discretization method
-c2d_opts = c2dOptions('Method','foh');
+c2d_opts = c2dOptions('Method','Tustin');
 
 % PI compensator
 Cpi_d = c2d(st.asm.fpi,Ts,c2d_opts);
@@ -274,7 +274,7 @@ G_fb_fd = [-Cpi_d-st.asm.Kd*Hpd_d;-st.asm.Kfd*Hpd_d];
 [asm_fb_imp_y, asm_fb_imp_t] = impulse(G_fb_fd);
 % M2POS FB controller impulse test data
 [m2pact_fb_imp_y, m2pact_fb_imp_t] = impulse(kc*m2p_Cfb_d);
-if (update_test_dt && ~exist('m2asm_tests','var'))
+if (update_test_dt || ~exist('m2asm_tests','var'))
     save('m2asm_tests','preshapeBessel_step_y','preshapeBessel_step_t',...
         'asm_fb_imp_y','asm_fb_imp_t',...
         'm2pact_fb_imp_y','m2pact_fb_imp_t');

@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'ASM_PIplusD_Fd'.
  *
- * Model version                  : 9.4
+ * Model version                  : 9.5
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Apr 14 16:10:20 2023
+ * C/C++ source code generated on : Wed Apr 26 17:28:28 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -33,10 +33,10 @@ void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const ASM_PIplusD_Fd_M,
     (-ASM_PIplusD_Fd_DW->ASMPIcontroller_states);
 
   /* DiscreteTransferFcn: '<S1>/Numerical differentiation' */
-  denAccum_0 = ASM_PIplusD_Fd_U->asm_FB - -0.043213918263772258 *
+  denAccum_0 = ASM_PIplusD_Fd_U->asm_FB - 0.22203094070331456 *
     ASM_PIplusD_Fd_DW->Numericaldifferentiation_states;
-  rtb_Numericaldifferentiation = 7654.28865388982 * denAccum_0 +
-    -7654.2886538898265 * ASM_PIplusD_Fd_DW->Numericaldifferentiation_states;
+  rtb_Numericaldifferentiation = 9776.247525626517 * denAccum_0 +
+    -9776.247525626517 * ASM_PIplusD_Fd_DW->Numericaldifferentiation_states;
 
   /* Outport: '<Root>/asm_U' incorporates:
    *  DiscreteTransferFcn: '<S1>/ASM PI controller'
@@ -44,7 +44,7 @@ void ASM_PIplusD_Fd_step(RT_MODEL_ASM_PIplusD_Fd_T *const ASM_PIplusD_Fd_M,
    *  Sum: '<S1>/Sum3'
    *  Sum: '<S1>/Sum4'
    */
-  ASM_PIplusD_Fd_Y->asm_U = ((70031.25 * denAccum + -69968.750000000015 *
+  ASM_PIplusD_Fd_Y->asm_U = ((70031.25 * denAccum + -69968.75 *
     ASM_PIplusD_Fd_DW->ASMPIcontroller_states) - 24.5 *
     rtb_Numericaldifferentiation) + ASM_PIplusD_Fd_U->asm_FF;
 
