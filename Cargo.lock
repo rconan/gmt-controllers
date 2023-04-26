@@ -165,7 +165,7 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
 name = "gmt_m1-ctrl_center-actuators"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "paste",
  "simulink-rs",
@@ -173,7 +173,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_hardpoints-dynamics"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "matio-rs",
  "paste",
@@ -182,7 +182,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_outer-actuators"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "paste",
  "simulink-rs",
@@ -190,7 +190,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_pid-damping"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "matio-rs",
  "simulink-rs",
@@ -198,7 +198,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_positionner"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "matio-rs",
  "simulink-rs",
@@ -206,15 +206,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_preshape-filter"
-version = "0.1.1"
-dependencies = [
- "matio-rs",
- "simulink-rs",
-]
-
-[[package]]
-name = "gmt_ngao_temporal_ctrl"
-version = "0.1.0"
+version = "0.1.2"
 dependencies = [
  "matio-rs",
  "simulink-rs",
@@ -394,9 +386,9 @@ checksum = "43b2853a4d09f215c24cc5489c992ce46052d359b5109343cbafbf26bc62f8a3"
 
 [[package]]
 name = "simulink-rs"
-version = "2.0.1"
+version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75bebafd7f5ed11ad92152d0b71b61c6b780bdfc119b1e311de7c1fa0f80dd33"
+checksum = "816acb0eb9dae1e971f9ef3d9f6cefc25a9c4cbf672c9e0a49cb8fa7b83c2072"
 dependencies = [
  "bindgen 0.64.0",
  "cc",

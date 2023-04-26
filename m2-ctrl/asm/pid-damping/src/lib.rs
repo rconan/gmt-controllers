@@ -16,7 +16,7 @@ mod tests {
     fn impulse() {
         let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
             .join("..")
-            .join("simulink_models")
+            .join("simulink-models")
             .join("m2asm_tests.mat");
         let mat = MatFile::load(path.to_str().unwrap()).unwrap();
         let asm_fb_t: Vec<f64> = mat.var("asm_fb_imp_t").unwrap();
