@@ -1,5 +1,5 @@
 [package]
-name = "gmt_mount-ctrl_pid-ff"
+name = "gmt_mount-ctrl_controller"
 version = "0.0.1"
 authors.workspace = true
 edition.workspace = true

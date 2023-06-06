@@ -1,5 +1,5 @@
 [package]
-name = "gmt_mount-drive_act"
+name = "gmt_mount-ctrl_driver"
 version = "0.0.1"
 authors.workspace = true
 edition.workspace = true
