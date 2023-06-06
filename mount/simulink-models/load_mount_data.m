@@ -8,6 +8,18 @@
 deltaT = 1e-3;     % [s] Main sampling period
 FEM_Ts = deltaT;
 
+
+%
+% Notch filter realization
+% function filter = notchF(fc,F,delta)
+notchF = @(fc,F,delta) tf([1, 4*pi*fc/(F*delta), 4*(pi*fc)^2],...
+    [1, 4*pi*fc/F, 4*(pi*fc)^2]);
+% INPUTS
+% fc: notched frequency in Hz
+% F: sharpness factor (higher F leads to narrower rejection band)
+% delta: notch depth in dB
+%
+
 %% Script options
 %%
 % Flag to compile M1 control model codes at the end of data loading process
@@ -83,7 +95,8 @@ c2d_opt = c2dOptions('method','tustin');
 mnt_TF_Ts = FEM_Ts;
 
 % AZ
-mount.az.SSdtHfb = balreal(c2d(ss(o.az.c.Hp), mnt_TF_Ts, c2d_opt));    % FB
+aznotchF17 = notchF(16.9, 3.5, 1.8);
+mount.az.SSdtHfb = balreal(c2d(ss(aznotchF17*o.az.c.Hp), mnt_TF_Ts, c2d_opt));    % FB
 mount.az.SSdtHff = balreal(c2d(ss(o.az.c.Hff), mnt_TF_Ts, c2d_opt));   % FF
 % EL
 mount.el.SSdtHfb = balreal(c2d(ss(o.el.c.Hp), mnt_TF_Ts, c2d_opt));    % FB
