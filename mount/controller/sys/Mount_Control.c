@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 9.53
+ * Model version                  : 9.57
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Jun  2 13:39:09 2023
+ * C/C++ source code generated on : Tue Jun  6 15:34:15 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -71,20 +71,20 @@ void Mount_Control_step(RT_MODEL_Mount_Control_T *const Mount_Control_M,
   /* DiscreteStateSpace: '<S1>/AZ FB controller' */
   {
     {
-      static const int_T colCidxRow0[7] = { 0, 1, 2, 3, 4, 5, 6 };
+      static const int_T colCidxRow0[9] = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 
       const int_T *pCidx = &colCidxRow0[0];
       const real_T *pC0 = Mount_Control_ConstP.AZFBcontroller_C;
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
       real_T *y0 = &rtb_AZFBcontroller;
-      int_T numNonZero = 6;
+      int_T numNonZero = 8;
       *y0 = (*pC0++) * xd[*pCidx++];
       while (numNonZero--) {
         *y0 += (*pC0++) * xd[*pCidx++];
       }
     }
 
-    rtb_AZFBcontroller += 8.60525757895686E+10*rtb_Sum1;
+    rtb_AZFBcontroller += 8.4929489094814651E+10*rtb_Sum1;
   }
 
   /* Sum: '<S1>/Sum' */
@@ -141,107 +141,139 @@ void Mount_Control_step(RT_MODEL_Mount_Control_T *const Mount_Control_M,
 
   /* Update for DiscreteStateSpace: '<S1>/AZ FB controller' */
   {
-    real_T xnew[7];
-    xnew[0] = (0.99999999999999978)*Mount_Control_DW->AZFBcontroller_DSTATE[0];
-    xnew[0] += (-9571.8516486174049)*rtb_Sum1;
+    real_T xnew[9];
+    xnew[0] = (1.0000000000000002)*Mount_Control_DW->AZFBcontroller_DSTATE[0];
+    xnew[0] += (-13908.578702639305)*rtb_Sum1;
 
     {
-      static const int_T colAidxRow1[6] = { 1, 2, 3, 4, 5, 6 };
+      static const int_T colAidxRow1[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
       const int_T *pAidx = &colAidxRow1[0];
       const real_T *pA1 = &Mount_Control_ConstP.AZFBcontroller_A[1];
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
       real_T *pxnew1 = &xnew[1];
-      int_T numNonZero = 5;
+      int_T numNonZero = 7;
       *pxnew1 = (*pA1++) * xd[*pAidx++];
       while (numNonZero--) {
         *pxnew1 += (*pA1++) * xd[*pAidx++];
       }
     }
 
-    xnew[1] += (140463.338547439)*rtb_Sum1;
+    xnew[1] += (144726.67159111143)*rtb_Sum1;
 
     {
-      static const int_T colAidxRow2[6] = { 1, 2, 3, 4, 5, 6 };
+      static const int_T colAidxRow2[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
       const int_T *pAidx = &colAidxRow2[0];
-      const real_T *pA7 = &Mount_Control_ConstP.AZFBcontroller_A[7];
+      const real_T *pA9 = &Mount_Control_ConstP.AZFBcontroller_A[9];
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
       real_T *pxnew2 = &xnew[2];
-      int_T numNonZero = 5;
-      *pxnew2 = (*pA7++) * xd[*pAidx++];
+      int_T numNonZero = 7;
+      *pxnew2 = (*pA9++) * xd[*pAidx++];
       while (numNonZero--) {
-        *pxnew2 += (*pA7++) * xd[*pAidx++];
+        *pxnew2 += (*pA9++) * xd[*pAidx++];
       }
     }
 
-    xnew[2] += (255831.97878329802)*rtb_Sum1;
+    xnew[2] += (-254031.77036635421)*rtb_Sum1;
 
     {
-      static const int_T colAidxRow3[6] = { 1, 2, 3, 4, 5, 6 };
+      static const int_T colAidxRow3[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
       const int_T *pAidx = &colAidxRow3[0];
-      const real_T *pA13 = &Mount_Control_ConstP.AZFBcontroller_A[13];
+      const real_T *pA17 = &Mount_Control_ConstP.AZFBcontroller_A[17];
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
       real_T *pxnew3 = &xnew[3];
-      int_T numNonZero = 5;
-      *pxnew3 = (*pA13++) * xd[*pAidx++];
+      int_T numNonZero = 7;
+      *pxnew3 = (*pA17++) * xd[*pAidx++];
       while (numNonZero--) {
-        *pxnew3 += (*pA13++) * xd[*pAidx++];
+        *pxnew3 += (*pA17++) * xd[*pAidx++];
       }
     }
 
-    xnew[3] += (-110648.8811233452)*rtb_Sum1;
+    xnew[3] += (106507.34103700973)*rtb_Sum1;
 
     {
-      static const int_T colAidxRow4[6] = { 1, 2, 3, 4, 5, 6 };
+      static const int_T colAidxRow4[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
       const int_T *pAidx = &colAidxRow4[0];
-      const real_T *pA19 = &Mount_Control_ConstP.AZFBcontroller_A[19];
-      const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
-      real_T *pxnew4 = &xnew[4];
-      int_T numNonZero = 5;
-      *pxnew4 = (*pA19++) * xd[*pAidx++];
-      while (numNonZero--) {
-        *pxnew4 += (*pA19++) * xd[*pAidx++];
-      }
-    }
-
-    xnew[4] += (23985.455482685655)*rtb_Sum1;
-
-    {
-      static const int_T colAidxRow5[6] = { 1, 2, 3, 4, 5, 6 };
-
-      const int_T *pAidx = &colAidxRow5[0];
       const real_T *pA25 = &Mount_Control_ConstP.AZFBcontroller_A[25];
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
-      real_T *pxnew5 = &xnew[5];
-      int_T numNonZero = 5;
-      *pxnew5 = (*pA25++) * xd[*pAidx++];
+      real_T *pxnew4 = &xnew[4];
+      int_T numNonZero = 7;
+      *pxnew4 = (*pA25++) * xd[*pAidx++];
       while (numNonZero--) {
-        *pxnew5 += (*pA25++) * xd[*pAidx++];
+        *pxnew4 += (*pA25++) * xd[*pAidx++];
       }
     }
 
-    xnew[5] += (-2383.416200805339)*rtb_Sum1;
+    xnew[4] += (24412.769492983138)*rtb_Sum1;
 
     {
-      static const int_T colAidxRow6[6] = { 1, 2, 3, 4, 5, 6 };
+      static const int_T colAidxRow5[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-      const int_T *pAidx = &colAidxRow6[0];
-      const real_T *pA31 = &Mount_Control_ConstP.AZFBcontroller_A[31];
+      const int_T *pAidx = &colAidxRow5[0];
+      const real_T *pA33 = &Mount_Control_ConstP.AZFBcontroller_A[33];
       const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
-      real_T *pxnew6 = &xnew[6];
-      int_T numNonZero = 5;
-      *pxnew6 = (*pA31++) * xd[*pAidx++];
+      real_T *pxnew5 = &xnew[5];
+      int_T numNonZero = 7;
+      *pxnew5 = (*pA33++) * xd[*pAidx++];
       while (numNonZero--) {
-        *pxnew6 += (*pA31++) * xd[*pAidx++];
+        *pxnew5 += (*pA33++) * xd[*pAidx++];
       }
     }
 
-    xnew[6] += (-19954.601912281483)*rtb_Sum1;
+    xnew[5] += (-22584.721511479082)*rtb_Sum1;
+
+    {
+      static const int_T colAidxRow6[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+      const int_T *pAidx = &colAidxRow6[0];
+      const real_T *pA41 = &Mount_Control_ConstP.AZFBcontroller_A[41];
+      const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
+      real_T *pxnew6 = &xnew[6];
+      int_T numNonZero = 7;
+      *pxnew6 = (*pA41++) * xd[*pAidx++];
+      while (numNonZero--) {
+        *pxnew6 += (*pA41++) * xd[*pAidx++];
+      }
+    }
+
+    xnew[6] += (-1869.7081539485662)*rtb_Sum1;
+
+    {
+      static const int_T colAidxRow7[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+      const int_T *pAidx = &colAidxRow7[0];
+      const real_T *pA49 = &Mount_Control_ConstP.AZFBcontroller_A[49];
+      const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
+      real_T *pxnew7 = &xnew[7];
+      int_T numNonZero = 7;
+      *pxnew7 = (*pA49++) * xd[*pAidx++];
+      while (numNonZero--) {
+        *pxnew7 += (*pA49++) * xd[*pAidx++];
+      }
+    }
+
+    xnew[7] += (61.057466210138955)*rtb_Sum1;
+
+    {
+      static const int_T colAidxRow8[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+      const int_T *pAidx = &colAidxRow8[0];
+      const real_T *pA57 = &Mount_Control_ConstP.AZFBcontroller_A[57];
+      const real_T *xd = &Mount_Control_DW->AZFBcontroller_DSTATE[0];
+      real_T *pxnew8 = &xnew[8];
+      int_T numNonZero = 7;
+      *pxnew8 = (*pA57++) * xd[*pAidx++];
+      while (numNonZero--) {
+        *pxnew8 += (*pA57++) * xd[*pAidx++];
+      }
+    }
+
+    xnew[8] += (4156.7449678230441)*rtb_Sum1;
     (void) memcpy(&Mount_Control_DW->AZFBcontroller_DSTATE[0], xnew,
-                  sizeof(real_T)*7);
+                  sizeof(real_T)*9);
   }
 
   /* Update for DiscreteStateSpace: '<S1>/EL FB controller' */

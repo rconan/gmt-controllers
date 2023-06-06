@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 9.53
+ * Model version                  : 9.57
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Jun  2 13:39:09 2023
+ * C/C++ source code generated on : Tue Jun  6 15:34:15 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -26,7 +26,7 @@
 
 /* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
-  real_T AZFBcontroller_DSTATE[7];     /* '<S1>/AZ FB controller' */
+  real_T AZFBcontroller_DSTATE[9];     /* '<S1>/AZ FB controller' */
   real_T ELFBcontroller_DSTATE[13];    /* '<S1>/EL FB controller' */
   real_T GIRFBcontroller_DSTATE[7];    /* '<S1>/GIR FB controller' */
 } DW_Mount_Control_T;
@@ -41,12 +41,12 @@ typedef struct {
   /* Computed Parameter: AZFBcontroller_A
    * Referenced by: '<S1>/AZ FB controller'
    */
-  real_T AZFBcontroller_A[37];
+  real_T AZFBcontroller_A[65];
 
   /* Computed Parameter: AZFBcontroller_C
    * Referenced by: '<S1>/AZ FB controller'
    */
-  real_T AZFBcontroller_C[7];
+  real_T AZFBcontroller_C[9];
 
   /* Computed Parameter: ELFBcontroller_A
    * Referenced by: '<S1>/EL FB controller'
