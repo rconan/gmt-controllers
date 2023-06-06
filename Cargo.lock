@@ -213,6 +213,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "gmt_mount-ctrl_pid-ff"
+version = "0.0.1"
+dependencies = [
+ "matio-rs",
+ "simulink-rs",
+]
+
+[[package]]
+name = "gmt_mount-drive_act"
+version = "0.0.1"
+dependencies = [
+ "matio-rs",
+ "simulink-rs",
+]
+
+[[package]]
 name = "hermit-abi"
 version = "0.1.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -386,9 +402,9 @@ checksum = "43b2853a4d09f215c24cc5489c992ce46052d359b5109343cbafbf26bc62f8a3"
 
 [[package]]
 name = "simulink-rs"
-version = "3.0.0"
+version = "3.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "816acb0eb9dae1e971f9ef3d9f6cefc25a9c4cbf672c9e0a49cb8fa7b83c2072"
+checksum = "d059b8b3ce283c1f8cac0db25acd5a566fe2283fa73aba7ff63e2475c56daba5"
 dependencies = [
  "bindgen 0.64.0",
  "cc",

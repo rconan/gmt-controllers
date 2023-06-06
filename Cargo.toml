@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "mount/drv_fdr2023",
-    "mount/pid_ff_ctrl",
+    "mount/driver",
+    "mount/controller",
     "m1-ctrl/hardpoints",
     "m1-ctrl/actuators/center",
     "m1-ctrl/actuators/outer",
@@ -25,4 +25,4 @@ keywords = ["telescope", "astronomy"]
 [workspace.dependencies]
 matio-rs = "1.1.2"
 paste = "1.0.12"
-simulink-rs = "3.0.0"
+simulink-rs = "3.0.1"
