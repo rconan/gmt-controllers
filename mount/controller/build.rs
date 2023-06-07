@@ -2,6 +2,7 @@ use std::env;
 
 fn main() {
     let sys = if let Ok(_) = env::var("MOUNT_FDR_AZ17HZ") {
+        println!("cargo:warning=compiling mount control with 17Hz notch filter");
         simulink_rs::Sys::builder()
             .name("MountController")
             .folder("sys-az17Hz")
