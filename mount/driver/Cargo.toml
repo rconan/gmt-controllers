@@ -1,6 +1,6 @@
 [package]
 name = "gmt_mount-ctrl_driver"
-version = "0.0.2"
+version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -12,6 +12,7 @@ categories.workspace = true
 keywords.workspace = true
 
 [dependencies]
+serde.workspace = true
 simulink-rs.workspace = true
 
 [build-dependencies]
