@@ -182,7 +182,7 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
 name = "gmt_m1-ctrl_center-actuators"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "paste",
  "serde",
@@ -191,7 +191,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_hardpoints-dynamics"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "matio-rs",
  "paste",
@@ -201,7 +201,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_outer-actuators"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "paste",
  "serde",
@@ -210,7 +210,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_pid-damping"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "matio-rs",
  "serde",
@@ -219,7 +219,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_positionner"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "matio-rs",
  "serde",
@@ -228,7 +228,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m2-ctrl_asm_preshape-filter"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "matio-rs",
  "serde",
@@ -237,7 +237,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_mount-ctrl_controller"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "matio-rs",
  "serde",
@@ -246,7 +246,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_mount-ctrl_driver"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "matio-rs",
  "serde",
@@ -503,9 +503,9 @@ checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
 name = "simulink-rs"
-version = "3.1.0"
+version = "4.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c7d277823bdc79f5da10e9bba7144a53ba4c2f88ff51e64af944c74f0cbf7ca"
+checksum = "f19cb2982d522228c353c701cbfa3b9b4eef3a114625778a5141c7b5aac1ce6a"
 dependencies = [
  "bindgen 0.69.4",
  "cc",
