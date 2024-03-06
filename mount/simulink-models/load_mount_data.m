@@ -5,7 +5,7 @@
 % 
 % May, 2023: FDR2023 version
 
-deltaT = 1e-3;     % [s] Main sampling period
+deltaT = 1/8e3;     % [s] Main sampling period
 FEM_Ts = deltaT;
 
 
@@ -25,7 +25,7 @@ notchF = @(fc,F,delta) tf([1, 4*pi*fc/(F*delta), 4*(pi*fc)^2],...
 % Flag to compile M1 control model codes at the end of data loading process
 auto_compile = false;
 % Flag to save/update test data file
-update_test_dt = true; %false;%
+update_test_dt = false;%true; %
 % % Flag to save/update controller data file
 % update_calib_dt = false;%true; %
 
@@ -35,9 +35,9 @@ update_test_dt = true; %false;%
 % oTest.sZa: elevation zenith angle (ZA) as string e.g. '00','30','60'
 oTest.sZa = '30'; %'00' or '60'
 % oTest.sVer: FEM version as string e.g. '19'
-oTest.sVer = '20';
+oTest.sVer = '19';%'20';
 % oTest.sSubVer: FEM subversion as string e.g. '1'
-oTest.sSubVer = '11'; %'2'; %'9'; 
+oTest.sSubVer = '1'; %'11'; %'2'; 
 % oTest.sDamping: now '02' means 2% structural dumping
 oTest.sDamping ='02';
 % oTest.bUseReducedModel: [true|false] if true: a reduced model is used
@@ -67,8 +67,14 @@ fprintf('Getting model parameters ...\n');
 if (str2double(oTest.sVer)+0.01*str2double(oTest.sSubVer) < 20.11)
     % ODC Simulink model used (located in ../base)
     oTest.sRoot = 'rootw';
-    o = fun_confBase(oTest.sRoot, oTest.sZa, oTest.sVer, oTest.sSubVer, sDamping,...
+    o = fun_confBase(oTest.sRoot, oTest.sZa, oTest.sVer, oTest.sSubVer, oTest.sDamping,...
         0, oTest.bUseReducedModel);
+    ctrl_filename = fullfile('/Users/rromano/Workspace/gmt-ims',...
+        sprintf('controls_5pt1g%dK_z%s_llTT_oad.mat',...
+        ceil(1/deltaT/1e3), oTest.sZa));
+    fprintf('Loading mount controller and driver model parameters from\n%s\n',ctrl_filename);
+    load(ctrl_filename,'mount');
+    if(auto_compile), auto_compile = false; end %#ok<*UNRCH> 
 else
     % ODC Simulink model used (located in ../base)
     oTest.sRoot = 'root';
@@ -147,6 +153,7 @@ cd(currentFolder);
 %%
 
 % Test data
+clear mnt_fbC_step_y mnt_fbC_step_t
 [mnt_fbC_step_y(:,1), mnt_fbC_step_t] = step(mount.az.SSdtHfb,0.15);
 [mnt_fbC_step_y(:,2), ~] = step(mount.el.SSdtHfb,mnt_fbC_step_t);
 [mnt_fbC_step_y(:,3), ~] = step(mount.gir.SSdtHfb,mnt_fbC_step_t);
@@ -164,7 +171,7 @@ mnt_ctrl_name = sprintf("%s/Mount_Control",ModelFName);
 mnt_drv_name = sprintf("%s/Mount_Drv_FDR2023",ModelFName);
 
 if auto_compile
-    slbuild(mnt_ctrl_name); %#ok<UNRCH> 
+    slbuild(mnt_ctrl_name);
     slbuild(mnt_drv_name);
 else
     warning("The code for the mount controller and driver were not built!");
