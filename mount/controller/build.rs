@@ -1,8 +1,6 @@
-
 use std::env;
 
 fn main() {
-
     let model_folder = match env::var("MOUNT_MODEL") {
         Ok(val) => match val.as_str() {
             "MOUNT_PDR_8kHz" => "sys_pdr_za30_8k",
@@ -13,15 +11,18 @@ fn main() {
         },
         Err(e) => panic!("`MOUNT_MODEL` env var is not set: {e}"),
     };
-    
-    println!("cargo:warning= Mount controller model folder: {}", model_folder);
-    
+
+    println!(
+        "cargo:warning= Mount controller model folder: {}",
+        model_folder
+    );
+
     let sys = simulink_rs::Sys::builder()
         .name("MountController")
         .folder(model_folder)
         .build();
-    
+
     sys.compile().generate_module();
 
+    println!("cargo:rerun-if-env-changed=MOUNT_MODEL");
 }
-
