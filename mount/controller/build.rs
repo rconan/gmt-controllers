@@ -1,16 +1,27 @@
+
 use std::env;
 
 fn main() {
-    let sys = if let Ok(_) = env::var("MOUNT_FDR_AZ17HZ") {
-        println!("cargo:warning=compiling ODC mount control with 17Hz notch filter");
-        simulink_rs::Sys::builder()
-            .name("MountController")
-            .folder("sys-az17Hz")
-            .build()
-    } else {
-        println!("cargo:warning=compiling vanilla ODC mount control");
-        simulink_rs::Sys::new(Some("MountController"))
+
+    let model_folder = match env::var("MOUNT_MODEL") {
+        Ok(val) => match val.as_str() {
+            "MOUNT_PDR_8kHz" => "sys_pdr_za30_8k",
+            "MOUNT_FDR_1kHz" => "sys_fdr_1k",
+            //"MOUNT_FDR_8kHz" => "sys_fdr_8k",
+            "MOUNT_FDR_1kHz-az17Hz" => "sys_fdr_1k-az17Hz",
+            value => panic!("expected one of the following `MOUNT_MODEL`: `MOUNT_PDR_8kHz`, `MOUNT_FDR_1kHz` or `MOUNT_FDR_1kHz-az17Hz`, found {value}"),
+        },
+        Err(e) => panic!("`MOUNT_MODEL` env var is not set: {e}"),
     };
+    
+    println!("cargo:warning= Mount controller model folder: {}", model_folder);
+    
+    let sys = simulink_rs::Sys::builder()
+        .name("MountController")
+        .folder(model_folder)
+        .build();
+    
     sys.compile().generate_module();
-    println!("cargo:rerun-if-env-changed=MOUNT_FDR_AZ17HZ")
+
 }
+
