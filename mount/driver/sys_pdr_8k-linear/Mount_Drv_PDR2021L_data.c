@@ -1,11 +1,11 @@
 /*
- * File: Mount_Drv_PDR2021_linear_data.c
+ * File: Mount_Drv_PDR2021L_data.c
  *
- * Code generated for Simulink model 'Mount_Drv_PDR2021_linear'.
+ * Code generated for Simulink model 'Mount_Drv_PDR2021L'.
  *
- * Model version                  : 9.71
+ * Model version                  : 9.75
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Tue Mar  5 12:50:54 2024
+ * C/C++ source code generated on : Thu Mar  7 14:22:00 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -13,10 +13,10 @@
  * Validation result: All passed
  */
 
-#include "Mount_Drv_PDR2021_linear.h"
+#include "Mount_Drv_PDR2021L.h"
 
 /* Constant parameters (default storage) */
-const ConstP_Mount_Drv_PDR2021_line_T Mount_Drv_PDR2021_linear_ConstP = {
+const ConstP_Mount_Drv_PDR2021L_T Mount_Drv_PDR2021L_ConstP = {
   /* Expression: blkdiag(1/12*ones(12,1),1/4*ones(4,1),1/4*ones(4,1))
    * Referenced by: '<S1>/Split_Drv_To'
    */

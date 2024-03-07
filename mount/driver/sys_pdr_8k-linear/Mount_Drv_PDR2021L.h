@@ -1,11 +1,11 @@
 /*
- * File: Mount_Drv_PDR2021_linear.h
+ * File: Mount_Drv_PDR2021L.h
  *
- * Code generated for Simulink model 'Mount_Drv_PDR2021_linear'.
+ * Code generated for Simulink model 'Mount_Drv_PDR2021L'.
  *
- * Model version                  : 9.71
+ * Model version                  : 9.75
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Tue Mar  5 12:50:54 2024
+ * C/C++ source code generated on : Thu Mar  7 14:22:00 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -13,14 +13,14 @@
  * Validation result: All passed
  */
 
-#ifndef RTW_HEADER_Mount_Drv_PDR2021_linear_h_
-#define RTW_HEADER_Mount_Drv_PDR2021_linear_h_
-#ifndef Mount_Drv_PDR2021_linear_COMMON_INCLUDES_
-#define Mount_Drv_PDR2021_linear_COMMON_INCLUDES_
+#ifndef RTW_HEADER_Mount_Drv_PDR2021L_h_
+#define RTW_HEADER_Mount_Drv_PDR2021L_h_
+#ifndef Mount_Drv_PDR2021L_COMMON_INCLUDES_
+#define Mount_Drv_PDR2021L_COMMON_INCLUDES_
 #include "rtwtypes.h"
-#endif                           /* Mount_Drv_PDR2021_linear_COMMON_INCLUDES_ */
+#endif                                 /* Mount_Drv_PDR2021L_COMMON_INCLUDES_ */
 
-#include "Mount_Drv_PDR2021_linear_types.h"
+#include "Mount_Drv_PDR2021L_types.h"
 #include "rt_defines.h"
 
 /* Block signals and states (default storage) for system '<Root>' */
@@ -34,7 +34,7 @@ typedef struct {
   uint32_T CircBufIdx;                 /* '<S1>/AZ_delay' */
   uint32_T CircBufIdx_a;               /* '<S1>/EL_delay' */
   uint32_T CircBufIdx_i;               /* '<S1>/GIR_delay' */
-} DW_Mount_Drv_PDR2021_linear_T;
+} DW_Mount_Drv_PDR2021L_T;
 
 /* Constant parameters (default storage) */
 typedef struct {
@@ -42,36 +42,35 @@ typedef struct {
    * Referenced by: '<S1>/Split_Drv_To'
    */
   real_T Split_Drv_To_Gain[60];
-} ConstP_Mount_Drv_PDR2021_line_T;
+} ConstP_Mount_Drv_PDR2021L_T;
 
 /* External inputs (root inport signals with default storage) */
 typedef struct {
   real_T Mount_cmd[3];                 /* '<Root>/Mount_cmd' */
-  real_T Mount_pos[14];                /* '<Root>/Mount_pos' */
-} ExtU_Mount_Drv_PDR2021_linear_T;
+  real_T Mount_drv_Po;                 /* '<Root>/Mount_drv_Po' */
+} ExtU_Mount_Drv_PDR2021L_T;
 
 /* External outputs (root outports fed by signals with default storage) */
 typedef struct {
   real_T Mount_T[20];                  /* '<Root>/Mount_T' */
-} ExtY_Mount_Drv_PDR2021_linear_T;
+} ExtY_Mount_Drv_PDR2021L_T;
 
 /* Real-time Model Data Structure */
-struct tag_RTM_Mount_Drv_PDR2021_lin_T {
-  DW_Mount_Drv_PDR2021_linear_T *dwork;
+struct tag_RTM_Mount_Drv_PDR2021L_T {
+  DW_Mount_Drv_PDR2021L_T *dwork;
 };
 
 /* Constant parameters (default storage) */
-extern const ConstP_Mount_Drv_PDR2021_line_T Mount_Drv_PDR2021_linear_ConstP;
+extern const ConstP_Mount_Drv_PDR2021L_T Mount_Drv_PDR2021L_ConstP;
 
 /* Model entry point functions */
-extern void Mount_Drv_PDR2021_linear_initialize(RT_MODEL_Mount_Drv_PDR2021_li_T *
-  const Mount_Drv_PDR2021_linear_M);
-extern void Mount_Drv_PDR2021_linear_step(RT_MODEL_Mount_Drv_PDR2021_li_T *const
-  Mount_Drv_PDR2021_linear_M, ExtU_Mount_Drv_PDR2021_linear_T
-  *Mount_Drv_PDR2021_linear_U, ExtY_Mount_Drv_PDR2021_linear_T
-  *Mount_Drv_PDR2021_linear_Y);
-extern void Mount_Drv_PDR2021_linear_terminate(RT_MODEL_Mount_Drv_PDR2021_li_T *
-  const Mount_Drv_PDR2021_linear_M);
+extern void Mount_Drv_PDR2021L_initialize(RT_MODEL_Mount_Drv_PDR2021L_T *const
+  Mount_Drv_PDR2021L_M);
+extern void Mount_Drv_PDR2021L_step(RT_MODEL_Mount_Drv_PDR2021L_T *const
+  Mount_Drv_PDR2021L_M, ExtU_Mount_Drv_PDR2021L_T *Mount_Drv_PDR2021L_U,
+  ExtY_Mount_Drv_PDR2021L_T *Mount_Drv_PDR2021L_Y);
+extern void Mount_Drv_PDR2021L_terminate(RT_MODEL_Mount_Drv_PDR2021L_T *const
+  Mount_Drv_PDR2021L_M);
 
 /*-
  * The generated code includes comments that allow you to trace directly
@@ -85,15 +84,15 @@ extern void Mount_Drv_PDR2021_linear_terminate(RT_MODEL_Mount_Drv_PDR2021_li_T *
  * MATLAB hilite_system command to trace the generated code back
  * to the parent model.  For example,
  *
- * hilite_system('mount_2_rust/Mount_Drv_PDR2021_linear')    - opens subsystem mount_2_rust/Mount_Drv_PDR2021_linear
- * hilite_system('mount_2_rust/Mount_Drv_PDR2021_linear/Kp') - opens and selects block Kp
+ * hilite_system('mount_2_rust/Mount_Drv_PDR2021L')    - opens subsystem mount_2_rust/Mount_Drv_PDR2021L
+ * hilite_system('mount_2_rust/Mount_Drv_PDR2021L/Kp') - opens and selects block Kp
  *
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'mount_2_rust'
- * '<S1>'   : 'mount_2_rust/Mount_Drv_PDR2021_linear'
+ * '<S1>'   : 'mount_2_rust/Mount_Drv_PDR2021L'
  */
-#endif                              /* RTW_HEADER_Mount_Drv_PDR2021_linear_h_ */
+#endif                                 /* RTW_HEADER_Mount_Drv_PDR2021L_h_ */
 
 /*
  * File trailer for generated code.
