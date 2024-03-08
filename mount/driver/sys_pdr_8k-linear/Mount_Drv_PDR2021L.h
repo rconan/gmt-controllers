@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Drv_PDR2021L'.
  *
- * Model version                  : 9.75
+ * Model version                  : 9.77
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Mar  7 14:22:00 2024
+ * C/C++ source code generated on : Fri Mar  8 08:43:34 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -47,7 +47,7 @@ typedef struct {
 /* External inputs (root inport signals with default storage) */
 typedef struct {
   real_T Mount_cmd[3];                 /* '<Root>/Mount_cmd' */
-  real_T Mount_drv_Po;                 /* '<Root>/Mount_drv_Po' */
+  real_T Mount_drv_Po[14];             /* '<Root>/Mount_drv_Po' */
 } ExtU_Mount_Drv_PDR2021L_T;
 
 /* External outputs (root outports fed by signals with default storage) */
@@ -71,6 +71,12 @@ extern void Mount_Drv_PDR2021L_step(RT_MODEL_Mount_Drv_PDR2021L_T *const
   ExtY_Mount_Drv_PDR2021L_T *Mount_Drv_PDR2021L_Y);
 extern void Mount_Drv_PDR2021L_terminate(RT_MODEL_Mount_Drv_PDR2021L_T *const
   Mount_Drv_PDR2021L_M);
+
+/*-
+ * These blocks were eliminated from the model due to optimizations:
+ *
+ * Block '<S1>/Drv_Pos_avg' : Unused code path elimination
+ */
 
 /*-
  * The generated code includes comments that allow you to trace directly
