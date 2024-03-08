@@ -237,7 +237,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_mount-ctrl_controller"
-version = "0.2.1"
+version = "1.0.0"
 dependencies = [
  "matio-rs",
  "serde",
@@ -246,7 +246,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_mount-ctrl_driver"
-version = "0.1.1"
+version = "1.0.0"
 dependencies = [
  "matio-rs",
  "serde",
