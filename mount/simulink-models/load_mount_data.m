@@ -3,11 +3,13 @@
 %
 % Load variables to mount drives and controller
 % 
+% - CHANGELOG -
 % May, 2023: FDR2023 version
+% Feb, 2024: Including models of the PDR2021 version
+%
 
 deltaT = 1/8e3;     % [s] Main sampling period
 FEM_Ts = deltaT;
-
 
 %
 % Notch filter realization
@@ -35,9 +37,9 @@ update_test_dt = false;%true; %
 % oTest.sZa: elevation zenith angle (ZA) as string e.g. '00','30','60'
 oTest.sZa = '30'; %'00' or '60'
 % oTest.sVer: FEM version as string e.g. '19'
-oTest.sVer = '19';%'20';
+oTest.sVer = '19';%'20';%
 % oTest.sSubVer: FEM subversion as string e.g. '1'
-oTest.sSubVer = '1'; %'11'; %'2'; 
+oTest.sSubVer = '1'; %'11'; %'2'; %
 % oTest.sDamping: now '02' means 2% structural dumping
 oTest.sDamping ='02';
 % oTest.bUseReducedModel: [true|false] if true: a reduced model is used
@@ -89,7 +91,7 @@ else
 end
 
 % Remove folders from Matlab path
-fprintf('\nRemoving folders\n%s\n%s\nfrom MatLab path.\n',...
+fprintf('\nRemoving folders\n%s\n%s\nfrom MatLab path.\n\n',...
     odc_base_util_folder, odc_base_conf_folder);
 rmpath(odc_base_util_folder,odc_base_conf_folder);
 
