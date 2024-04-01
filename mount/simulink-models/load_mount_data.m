@@ -37,9 +37,9 @@ update_test_dt = false;%true; %
 % oTest.sZa: elevation zenith angle (ZA) as string e.g. '00','30','60'
 oTest.sZa = '30'; %'00' or '60'
 % oTest.sVer: FEM version as string e.g. '19'
-oTest.sVer = '19';%'20';%
+oTest.sVer = '20';%'19';%
 % oTest.sSubVer: FEM subversion as string e.g. '1'
-oTest.sSubVer = '1'; %'11'; %'2'; %
+oTest.sSubVer = '11'; %'2'; %'1'; %
 % oTest.sDamping: now '02' means 2% structural dumping
 oTest.sDamping ='02';
 % oTest.bUseReducedModel: [true|false] if true: a reduced model is used
