@@ -1,12 +1,12 @@
 [package]
 name = "gmt_m2-ctrl_asm_pid-damping"
-version = "0.2.1"
+version = "0.2.2"
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
 description.workspace = true
 repository.workspace = true
-documentation.workspace = true
+documentation = "https://docs.rs/gmt_m2-ctrl_asm_pid-damping"
 readme.workspace = true
 categories.workspace = true
 keywords.workspace = true
