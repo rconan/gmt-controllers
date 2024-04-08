@@ -9,13 +9,13 @@ fn main() {
         Ok(val) => match val.as_str() {
             "MOUNT_PDR_8kHz" => "sys_pdr_za30_8k",
             "MOUNT_FDR_1kHz" => "sys_fdr_1k",
-            //"MOUNT_FDR_8kHz" => "sys_fdr_8k",
+            "MOUNT_FDR_8kHz" => "sys_fdr_8k",
             "MOUNT_FDR_1kHz-az17Hz" => "sys_fdr_1k-az17Hz",
-            value => panic!("expected one of the following `MOUNT_MODEL`: `MOUNT_PDR_8kHz`, `MOUNT_FDR_1kHz` or `MOUNT_FDR_1kHz-az17Hz`, found {value}"),
+            value => panic!("Expected one of the following `MOUNT_MODEL`: `MOUNT_PDR_8kHz`, `MOUNT_FDR_1kHz`, `MOUNT_FDR_1kHz-az17Hz` or `MOUNT_FDR_8kHz`, found {value}"),
         },
         Err(e) => panic!(r"
 `MOUNT_MODEL` env var is not set,
-`MOUNT_MODEL` should be set to either `MOUNT_PDR_8kHz`, `MOUNT_FDR_1kHz` or `MOUNT_FDR_1kHz-az17Hz`,
+`MOUNT_MODEL` should be set to either `MOUNT_PDR_8kHz`, `MOUNT_FDR_1kHz`, `MOUNT_FDR_1kHz-az17Hz` or `MOUNT_FDR_8kHz`,
 caused by {e}"),    };
 
     println!(
