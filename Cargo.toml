@@ -18,7 +18,6 @@ edition = "2021"
 license = "MIT"
 description = "Giant Magellan Telescope C-code control system models"
 repository = "https://github.com/rconan/gmt-controllers"
-#documentation = "https://docs.rs/gmt_m1-ctrl"
 readme = "README.md"
 categories = ["science", "simulation"]
 keywords = ["telescope", "astronomy"]
