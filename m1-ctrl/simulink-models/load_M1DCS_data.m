@@ -79,8 +79,8 @@ CS_ofl_SSdtC = m1sys{7}.ofl.SSdtC;
 ModelFName = 'M1DCS_2_rust';
 open(sprintf('%s.slx',ModelFName));
 
-build_subsys = 'M1_SA';
-% build_subsys = 'HP_dyn';
+% build_subsys = 'M1_SA';
+build_subsys = 'HP_dyn';
 
 hplc_label = sprintf('%s/M1_HP_loadcells', ModelFName);
 hp_RBMtoD_label = sprintf('%s/M1RBM_to_HP_relD', ModelFName);
@@ -146,6 +146,36 @@ switch build_subsys
     case 'HP_dyn'
         % Solver sampling period
         deltaT = m1sys{1}.HPdtf.Ts;
+        %% M1 Command pre-processor (CCP)
+        %%
+
+        % Command pre-processor (CPP) settings
+        delta_sim = deltaT;
+        Tcmd = 10*delta_sim;                      % Command update period
+
+        % Bessel filter to limit acc derivative (jerk)
+        bessel_num = [9.50565136e-07, 3.80226054e-06, 5.70339082e-06, 3.80226054e-06, 9.50565138e-07];
+        bessel_den = [ 1., -3.80206663, 5.42365878, -3.4403268, 0.81874986];
+        bessel_f_disc = d2d(tf(bessel_num, bessel_den, 0.01), delta_sim);
+
+        % Bessel filter state-space realization
+        [A_f, B_f, C_f, D_f] = ssdata(balreal(bessel_f_disc));
+        [xf, ~] = step(ss(A_f, B_f, eye(4), zeros(4,1), delta_sim),10);
+        x0_f = xf(end,:);
+
+        t_gd = 0*0.5;
+        t_gd_v = 0*t_gd;
+
+        % Velocity and acceleration limits -- Symmetric bounds, i.e.: vmin = -vmax
+        v_max = 50e-6;      % [m/s]
+        a_max = 250e-6;     % [m/s^2]
+
+        n_in = 6;
+        % Initial position and velocity state
+        x0 = 0; % For now, one is unable to set a different IC for each HP length.
+        v0 = 0;
+
+        %%
         set_param(hplc_label,'Commented','off');
         set_param(hp_RBMtoD_label,'Commented','off');
         set_param(hp_dyn_label,'Commented','off');
