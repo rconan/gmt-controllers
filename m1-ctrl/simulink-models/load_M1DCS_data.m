@@ -151,7 +151,9 @@ switch build_subsys
 
         % Command pre-processor (CPP) settings
         delta_sim = deltaT;
+        
         Tcmd = 10*delta_sim;                      % Command update period
+        k_cmd = floor(Tcmd/delta_sim);            % Used in the Sample_generator block
 
         % Bessel filter to limit acc derivative (jerk)
         bessel_num = [9.50565136e-07, 3.80226054e-06, 5.70339082e-06, 3.80226054e-06, 9.50565138e-07];
@@ -160,9 +162,9 @@ switch build_subsys
 
         % Bessel filter state-space realization
         [A_f, B_f, C_f, D_f] = ssdata(balreal(bessel_f_disc));
-        [xf, ~] = step(ss(A_f, B_f, eye(4), zeros(4,1), delta_sim),10);
-        x0_f = xf(end,:);
-
+        [xf, ~] = step(ss(A_f, B_f, eye(4), zeros(4,1), delta_sim),10);        
+        x0_f = 0*xf(end,:);     % Bessel filter IC set to zero
+        % Group delay compensation constants
         t_gd = 0*0.5;
         t_gd_v = 0*t_gd;
 

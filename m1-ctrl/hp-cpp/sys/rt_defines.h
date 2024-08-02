@@ -3,14 +3,14 @@
  *
  * Code generated for Simulink model 'm1hp_cpp'.
  *
- * Model version                  : 9.18
+ * Model version                  : 9.24
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Aug  1 09:58:43 2024
+ * C/C++ source code generated on : Fri Aug  2 14:52:37 2024
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: Passed (8), Warnings (2), Error (0)
+ * Validation result: Passed (9), Warning (1), Error (0)
  */
 
 #ifndef RTW_HEADER_rt_defines_h_
