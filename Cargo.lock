@@ -200,6 +200,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "gmt_m1-ctrl_hardpoints-preprocessor"
+version = "0.1.0"
+dependencies = [
+ "matio-rs",
+ "paste",
+ "serde",
+ "simulink-rs",
+]
+
+[[package]]
 name = "gmt_m1-ctrl_outer-actuators"
 version = "0.2.2"
 dependencies = [
@@ -503,9 +513,7 @@ checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
 name = "simulink-rs"
-version = "4.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a40adbdf2c5fb819fa6e5dae883596e961651e2f94466377605a5d1f2ee80f3b"
+version = "4.0.2"
 dependencies = [
  "bindgen 0.69.4",
  "cc",
