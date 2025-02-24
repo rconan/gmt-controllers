@@ -1,0 +1,22 @@
+[package]
+name = "gmt_m2-ctrl_fsm_piezostack"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description.workspace = true
+repository.workspace = true
+documentation = "https://docs.rs/gmt_m2-ctrl_fsm_piezostack"
+readme.workspace = true
+categories.workspace = true
+keywords.workspace = true
+
+[dependencies]
+serde.workspace = true
+simulink-rs.workspace = true
+
+[build-dependencies]
+simulink-rs.workspace = true
+
+[dev-dependencies]
+matio-rs.workspace = true

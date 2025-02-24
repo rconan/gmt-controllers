@@ -8,6 +8,8 @@ members = [
     "m2-ctrl/asm/preshape-filter",
     "m2-ctrl/asm/pid-damping",
     "m2-ctrl/asm/positionner",
+    "m2-ctrl/fsm/positionner",
+    "m2-ctrl/fsm/piezostack",
     #"wfc/ngao",
 ]
 resolver = "2"
