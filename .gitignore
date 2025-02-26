@@ -5,5 +5,5 @@
 *.autosave
 *.slxc
 # Original Simulink compiled file folders
-*/simulink-models/*_ert_rtw*
-*/simulink-models/slprj
+**/simulink-models/*_ert_rtw*
+**/simulink-models/slprj

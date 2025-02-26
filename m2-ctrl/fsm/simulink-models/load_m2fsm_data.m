@@ -137,18 +137,19 @@ end
 
 %% Test/verification step data
 %%
-% % Columns of preshapeBessel_step_y: [cmd_f, dot_cmd_f, ddot_cmd_f]
-% [preshapeBessel_step_y,preshapeBessel_step_t] = step(flag_d);
-% G_fb_fd = [-Cpi_d-st.asm.Kd*Hpd_d;-st.asm.Kfd*Hpd_d];
-% % Columns of asm_fb_imp_y:
-% [asm_fb_imp_y, asm_fb_imp_t] = impulse(G_fb_fd);
-% % M2POS FB controller impulse test data
-% [m2pact_fb_imp_y, m2pact_fb_imp_t] = impulse(kc*m2p_Cfb_d);
-% if (update_test_dt || ~exist('m2asm_tests','var'))
-%     save('m2asm_tests','preshapeBessel_step_y','preshapeBessel_step_t',...
-%         'asm_fb_imp_y','asm_fb_imp_t',...
-%         'm2pact_fb_imp_y','m2pact_fb_imp_t');
-% end
+[pzt_135_Cfb_imp_y,pzt_135_Cfb_imp_t] = impulse(balreal(minreal(m2pzt{1}.SSdtHfb)));
+[pzt_246_Cfb_imp_y,pzt_246_Cfb_imp_t] = impulse(balreal(minreal(m2pzt{2}.SSdtHfb)));
+[pzt_7_Cfb_imp_y,pzt_7_Cfb_imp_t] = impulse(balreal(minreal(m2pzt{7}.SSdtHfb)));
+% Columns of pzt_WWW_Cfb_imp_y: [act#1, act#2, act#3]
+
+% M2POS FB controller impulse test data
+[m2pact_fb_imp_y, m2pact_fb_imp_t] = impulse(kc*m2p_Cfb_d);
+if (update_test_dt || ~exist('m2fsm_tests','var'))
+    save('m2fsm_tests','pzt_135_Cfb_imp_y','pzt_135_Cfb_imp_t',...
+        'pzt_246_Cfb_imp_y','pzt_246_Cfb_imp_t',...
+        'pzt_7_Cfb_imp_y','pzt_7_Cfb_imp_t',...
+        'm2pact_fb_imp_y','m2pact_fb_imp_t');
+end
 
 
 %% Build FSM-based M2 models
