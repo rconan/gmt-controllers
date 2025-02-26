@@ -9,7 +9,9 @@ members = [
     "m2-ctrl/asm/pid-damping",
     "m2-ctrl/asm/positionner",
     "m2-ctrl/fsm/positionner",
-    "m2-ctrl/fsm/piezostack",
+    "m2-ctrl/fsm/piezo-135",
+    "m2-ctrl/fsm/piezo-246",
+    "m2-ctrl/fsm/piezo-7",
     #"wfc/ngao",
 ]
 resolver = "2"
