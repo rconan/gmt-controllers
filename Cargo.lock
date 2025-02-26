@@ -245,6 +245,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "gmt_m2-ctrl_fsm-piezo-246"
+version = "0.1.0"
+dependencies = [
+ "matio-rs",
+ "serde",
+ "simulink-rs",
+]
+
+[[package]]
+name = "gmt_m2-ctrl_fsm-piezo-7"
+version = "0.1.0"
+dependencies = [
+ "matio-rs",
+ "serde",
+ "simulink-rs",
+]
+
+[[package]]
 name = "gmt_m2-ctrl_fsm_positionner"
 version = "0.1.0"
 dependencies = [
