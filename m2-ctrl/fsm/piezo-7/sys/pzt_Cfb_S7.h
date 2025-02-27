@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'pzt_Cfb_S7'.
  *
- * Model version                  : 9.12
+ * Model version                  : 9.15
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Wed Feb 26 14:46:24 2025
+ * C/C++ source code generated on : Thu Feb 27 16:21:54 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -31,22 +31,9 @@
 /* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
   real_T fsm_Cfb_act1_DSTATE[4];       /* '<S1>/fsm_Cfb_act1' */
-  real_T fsm_Cfb_act2_DSTATE[6];       /* '<S1>/fsm_Cfb_act2' */
+  real_T fsm_Cfb_act2_DSTATE[4];       /* '<S1>/fsm_Cfb_act2' */
   real_T fsm_Cfb_act3_DSTATE[4];       /* '<S1>/fsm_Cfb_act3' */
 } DW_pzt_Cfb_S7_T;
-
-/* Constant parameters (default storage) */
-typedef struct {
-  /* Computed Parameter: fsm_Cfb_act2_A
-   * Referenced by: '<S1>/fsm_Cfb_act2'
-   */
-  real_T fsm_Cfb_act2_A[26];
-
-  /* Computed Parameter: fsm_Cfb_act2_C
-   * Referenced by: '<S1>/fsm_Cfb_act2'
-   */
-  real_T fsm_Cfb_act2_C[6];
-} ConstP_pzt_Cfb_S7_T;
 
 /* External inputs (root inport signals with default storage) */
 typedef struct {
@@ -62,9 +49,6 @@ typedef struct {
 struct tag_RTM_pzt_Cfb_S7_T {
   DW_pzt_Cfb_S7_T *dwork;
 };
-
-/* Constant parameters (default storage) */
-extern const ConstP_pzt_Cfb_S7_T pzt_Cfb_S7_ConstP;
 
 /* Model entry point functions */
 extern void pzt_Cfb_S7_initialize(RT_MODEL_pzt_Cfb_S7_T *const pzt_Cfb_S7_M);
