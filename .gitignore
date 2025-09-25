@@ -5,8 +5,9 @@
 *.autosave
 *.slxc
 # Original Simulink compiled file folders
-**/simulink-models/*_ert_rtw*
 **/simulink-models/slprj
+ 
+*.slxc
  
 # git-old folder
 +/.git-old

@@ -182,7 +182,7 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
 name = "gmt_m1-ctrl_center-actuators"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "paste",
  "serde",
@@ -191,7 +191,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_hardpoints-dynamics"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "matio-rs",
  "paste",
@@ -201,7 +201,7 @@ dependencies = [
 
 [[package]]
 name = "gmt_m1-ctrl_outer-actuators"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "paste",
  "serde",

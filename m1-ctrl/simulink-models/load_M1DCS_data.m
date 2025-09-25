@@ -184,14 +184,13 @@ end
 ModelFName = 'M1DCS_2_rust';
 open(sprintf('%s.slx',ModelFName));
 
-% build_subsys = 'M1_SA';
-build_subsys = 'HP_dyn';
+build_subsys = 'M1_SA';
+% build_subsys = 'HP_dyn';
 
 hplc_label = sprintf('%s/M1_HP_loadcells', ModelFName);
 hp_RBMtoD_label = sprintf('%s/M1RBM_to_HP_relD', ModelFName);
 hp_dyn_label = sprintf('%s/M1_HP_Dynamics', ModelFName);
-hp_stiff_label = sprintf('%s/HPk', ModelFName);
-m1SA_C_CS_label = sprintf('%s/M1SA_Control_CS' ,ModelFName);
+m1SA_C_CS_label = sprintf('%s/M1SA_Control_CS', ModelFName);
 m1SA_C_OA_label = sprintf('%s/M1SA_Control_OA', ModelFName);
 
 % MATLAB function for configuration set
@@ -210,16 +209,16 @@ catch ME
 end
 % Return to the m1-ctrl/simulink-models Simulink files folder
 cd(currentFolder);
+% Comment HP load cell model --- obsolete
+set_param(hplc_label,'Commented','on');
 
 switch build_subsys
     case 'M1_SA'
         n_bm = 27; %size(m1sys{2}.m1BM2F,2);
         deltaT = OA_ofl_SSdtC.Ts;   % Solver sampling period
 
-        set_param(hplc_label,'Commented','on');
         set_param(hp_RBMtoD_label,'Commented','on');
         set_param(hp_dyn_label,'Commented','on');
-        set_param(hp_stiff_label,'Commented','on');
         set_param(m1SA_C_OA_label,'Commented','off');
         set_param(m1SA_C_CS_label,'Commented','off');
         
@@ -248,10 +247,8 @@ switch build_subsys
     case 'HP_dyn'
         deltaT = HPdyn.Ts; % Solver sampling period
 
-        set_param(hplc_label,'Commented','off');
         set_param(hp_RBMtoD_label,'Commented','off');
         set_param(hp_dyn_label,'Commented','off');
-        set_param(hp_stiff_label,'Commented','off');
         set_param(m1SA_C_OA_label,'Commented','on');
         set_param(m1SA_C_CS_label,'Commented','on');
         
