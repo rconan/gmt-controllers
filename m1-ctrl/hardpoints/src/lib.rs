@@ -20,7 +20,7 @@ mod tests {
     use matio_rs::MatFile;
     #[test]
     fn step() {
-        let mat = MatFile::load("hp_dyn_step_test.mat").unwrap();
+        let mat = MatFile::load("../simulink-models/hp_dyn_step_test.mat").unwrap();
         let hp_dyn_step_t: Vec<f64> = mat.var("hp_dyn_step_t").unwrap();
         let hp_dyn_step_y: Vec<f64> = mat.var("hp_dyn_step_y").unwrap();
 
