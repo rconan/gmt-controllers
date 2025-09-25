@@ -1,23 +1,27 @@
 /*
+ * Academic License - for use in teaching, academic research, and meeting
+ * course requirements at degree granting institutions only.  Not for
+ * government, commercial, or other organizational use.
+ *
  * File: M1SA_Control_OA_data.c
  *
  * Code generated for Simulink model 'M1SA_Control_OA'.
  *
- * Model version                  : 9.6
+ * Model version                  : 9.26
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Apr 14 13:59:52 2023
+ * C/C++ source code generated on : Thu Sep 25 16:23:54 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: Not run
+ * Validation result: All passed
  */
 
 #include "M1SA_Control_OA.h"
 
 /* Constant parameters (default storage) */
 const ConstP_M1SA_Control_OA_T M1SA_Control_OA_ConstP = {
-  /* Expression: m1sys{1}.Kbal
+  /* Expression: OA_Kbal
    * Referenced by: '<S1>/OAseg_Kbal'
    */
   { 0.0131193522783687, 0.0, 0.00057345632323896518, 0.012086382022627582, 0.0,

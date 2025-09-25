@@ -1,16 +1,20 @@
 /*
+ * Academic License - for use in teaching, academic research, and meeting
+ * course requirements at degree granting institutions only.  Not for
+ * government, commercial, or other organizational use.
+ *
  * File: M1SA_Control_OA.h
  *
  * Code generated for Simulink model 'M1SA_Control_OA'.
  *
- * Model version                  : 9.6
+ * Model version                  : 9.26
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Apr 14 13:59:52 2023
+ * C/C++ source code generated on : Thu Sep 25 16:23:54 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: Not run
+ * Validation result: All passed
  */
 
 #ifndef RTW_HEADER_M1SA_Control_OA_h_
@@ -26,18 +30,18 @@
 
 /* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
-  real_T Fxcontroller_DSTATE[3];       /* '<S2>/Fx controller' */
-  real_T Fycontroller_DSTATE[3];       /* '<S2>/Fy controller' */
-  real_T Fzcontroller_DSTATE[3];       /* '<S2>/Fz controller' */
-  real_T Mxcontroller_DSTATE[3];       /* '<S2>/Mx controller' */
-  real_T Mycontroller_DSTATE[3];       /* '<S2>/My controller' */
-  real_T Mzcontroller_DSTATE[3];       /* '<S2>/Mz controller' */
-  real_T OA_SA_dyn_states[335];        /* '<S1>/OA_SA_dyn' */
+  real_T OA_SSdtC_Fx_DSTATE[3];        /* '<S2>/OA_SSdtC_Fx' */
+  real_T OA_SSdtC_Fy_DSTATE[3];        /* '<S2>/OA_SSdtC_Fy' */
+  real_T OA_SSdtC_Fz_DSTATE[3];        /* '<S2>/OA_SSdtC_Fz' */
+  real_T OA_SSdtC_Mx_DSTATE[3];        /* '<S2>/OA_SSdtC_Mx' */
+  real_T OA_SSdtC_My_DSTATE[3];        /* '<S2>/OA_SSdtC_My' */
+  real_T OA_SSdtC_Mz_DSTATE[3];        /* '<S2>/OA_SSdtC_Mz' */
+  real_T OA_SA_dyn_states[670];        /* '<S1>/OA_SA_dyn' */
 } DW_M1SA_Control_OA_T;
 
 /* Constant parameters (default storage) */
 typedef struct {
-  /* Expression: m1sys{1}.Kbal
+  /* Expression: OA_Kbal
    * Referenced by: '<S1>/OAseg_Kbal'
    */
   real_T OAseg_Kbal_Gain[2010];
@@ -90,7 +94,7 @@ extern void M1SA_Control_OA_terminate(RT_MODEL_M1SA_Control_OA_T *const
  *
  * '<Root>' : 'M1DCS_2_rust'
  * '<S1>'   : 'M1DCS_2_rust/M1SA_Control_OA'
- * '<S2>'   : 'M1DCS_2_rust/M1SA_Control_OA/OA_ofl_SSdtC'
+ * '<S2>'   : 'M1DCS_2_rust/M1SA_Control_OA/SSdtC_x6'
  */
 #endif                                 /* RTW_HEADER_M1SA_Control_OA_h_ */
 
