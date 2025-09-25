@@ -1,16 +1,20 @@
 /*
+ * Academic License - for use in teaching, academic research, and meeting
+ * course requirements at degree granting institutions only.  Not for
+ * government, commercial, or other organizational use.
+ *
  * File: HP_dyn_dTF.c
  *
  * Code generated for Simulink model 'HP_dyn_dTF'.
  *
- * Model version                  : 9.6
+ * Model version                  : 9.19
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Apr 14 14:07:31 2023
+ * C/C++ source code generated on : Thu Sep 25 15:58:26 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
  * Code generation objective: Execution efficiency
- * Validation result: Not run
+ * Validation result: All passed
  */
 
 #include "HP_dyn_dTF.h"
@@ -35,18 +39,18 @@ void HP_dyn_dTF_step(RT_MODEL_HP_dyn_dTF_T *const HP_dyn_dTF_M,
     denAccum_tmp = HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp + 1];
     denAccum_tmp_tmp = HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp + 2];
     denAccum_tmp_0 = HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp + 3];
-    denAccum = (((HP_dyn_dTF_U->In1[k] - -3.9324030529437657 *
+    denAccum = (((HP_dyn_dTF_U->In1[k] - -3.6156313772764426 *
                   HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp]) -
-                 denAccum_tmp * 5.7980159366164923) - denAccum_tmp_tmp *
-                -3.7988189837355097) - denAccum_tmp_0 * 0.93320610759369726;
+                 denAccum_tmp * 4.9397170649499467) - denAccum_tmp_tmp *
+                -3.0318977910660094) - denAccum_tmp_0 * 0.70781304499587727;
 
     /* Outport: '<Root>/Out1' incorporates:
      *  DiscreteTransferFcn: '<S1>/HP_dyn_dTF'
      */
-    HP_dyn_dTF_Y->Out1[k] = (((0.00010538306295552853 * denAccum +
-      9.3078381572247558E-7 * HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp]) +
-      denAccum_tmp * -0.00020983345936705571) + denAccum_tmp_tmp *
-      -9.27018359164759E-7) + denAccum_tmp_0 * 0.00010445416186808491;
+    HP_dyn_dTF_Y->Out1[k] = (((0.016471775514888189 * denAccum +
+      0.027512839496954752 * HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp]) +
+      denAccum_tmp * -0.089993823459658534) + denAccum_tmp_tmp *
+      0.032204233373457319) + denAccum_tmp_0 * 0.013805916677730477;
 
     /* Update for DiscreteTransferFcn: '<S1>/HP_dyn_dTF' */
     HP_dyn_dTF_DW->HP_dyn_dTF_states[memOffset_tmp + 3] = denAccum_tmp_tmp;
