@@ -13,9 +13,10 @@ clearvars
 % Flag to compile M1 control model codes at the end of data loading process
 auto_compile = false;
 % Flag to save/update test data file
-update_test_dt = false;%true; %
+update_test_dt = true; %false;%true; %
 % Flag to save/update controller data file
-update_calib_dt = false;%true; %
+update_calib_dt = true;%false;%
+
 
 %% Load M1 system data
 %%
@@ -97,11 +98,11 @@ ind_cell = find(kron(ones(7,1),[ones(6,1);zeros(6,1)]));
 ind_face = find(kron(ones(7,1),[zeros(6,1);ones(6,1)]));
 
 inHP_F_ind = inputTable{'OSS_Harpoint_delta_F','indices'}{1};
-outHP_Da = outputTable{'OSS_Hardpoint_D',"indices"}{1}(ind_cell);   % face side
-outHP_Db = outputTable{'OSS_Hardpoint_D',"indices"}{1}(ind_face);   % cell side
+outHP_Da = outputTable{'OSS_Hardpoint_D',"indices"}{1}(ind_cell);   % cell side
+outHP_Db = outputTable{'OSS_Hardpoint_D',"indices"}{1}(ind_face);   % face side
 
 HPstiffvec = 1./diag(...
-        gainMatrix(outHP_Da,inHP_F_ind)-gainMatrix(outHP_Db,inHP_F_ind));
+        gainMatrix(outHP_Db,inHP_F_ind)-gainMatrix(outHP_Da,inHP_F_ind));
 fprintf('HP stiffness:%.3g +/-%.2g [N/um]\n',...
     1e-6*mean(HPstiffvec),3e-6*std(HPstiffvec));
 m1_HPk = mean(HPstiffvec);
@@ -159,7 +160,7 @@ kvp_ = 0.0307562;
 kvi_ = 0.0153781;
 Cv_ = tf([kvp_, kvi_],[1 0]);
 Hv_ = minreal(Pv*Cv_/(1+Pv*Cv_));
-HPdyn = c2d(feedback(tf([kpp_, kpi_],[1 0])*Hv_*Pp,1), T_ofl,'foh');
+HPdyn = c2d(feedback(tf([kpp_, kpi_],[1 0])*Hv_*Pp,1), 1e-3,'foh');
 
 if(false)
     G_CT = fbH;
@@ -184,8 +185,8 @@ end
 ModelFName = 'M1DCS_2_rust';
 open(sprintf('%s.slx',ModelFName));
 
-build_subsys = 'M1_SA';
-% build_subsys = 'HP_dyn';
+% build_subsys = 'M1_SA';
+build_subsys = 'HP_dyn';
 
 hplc_label = sprintf('%s/M1_HP_loadcells', ModelFName);
 hp_RBMtoD_label = sprintf('%s/M1RBM_to_HP_relD', ModelFName);

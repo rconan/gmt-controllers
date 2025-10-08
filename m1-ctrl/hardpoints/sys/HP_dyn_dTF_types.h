@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'HP_dyn_dTF'.
  *
- * Model version                  : 9.19
+ * Model version                  : 9.28
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Sep 25 15:58:26 2025
+ * C/C++ source code generated on : Wed Oct  8 16:48:05 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
